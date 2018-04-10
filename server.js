@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3002;
 const mongoDB_URI = process.env.MONGODB_URI || "mongodb://localhost/skedgeLife";
 
 app.use(bodyParser.urlencoded({
