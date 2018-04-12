@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 3001;
 const mongoDB_URI = process.env.MONGODB_URI || "mongodb://localhost/skedgeLife";
 
 app.use(bodyParser.urlencoded({
@@ -21,10 +21,12 @@ app.use(express.static("client/build"));
 mongoose.connect(mongoDB_URI, err => {
   if (err) {
     console.log(err);
-  }
-  require('./controllers/usersController.js')(app);
+  } else {
+    require('./controllers/usersController.js')(app);
 
-  app.listen(PORT, err => {
-    err ? console.log(err) : console.log("App running on port " + PORT + "!")
-  });
+    app.listen(PORT, err => {
+      err ? console.log(err) : console.log("App running on port " + PORT + "!")
+    });
+  }
+
 });
