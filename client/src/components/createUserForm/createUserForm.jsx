@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './createUserForm.css';
 
+import axios from 'axios';
+
 export default class createUserForm extends Component {
     constructor(props) {
         super(props);
@@ -17,13 +19,18 @@ export default class createUserForm extends Component {
     }
 
 
-    change = e => {
-        this.setState({ [e.target.name]: e.target.value });
+    change = event => {
+        this.setState({ [event.target.name]: event.target.value });
     }
 
-    onSubmit(e) {
-        e.preventDefault();
+    onSubmit = event => {
+        event.preventDefault();
         console.log(this.state);
+        axios.post('/api/user', this.state).then(data => {
+            console.log(data);
+        }).catch(err => {
+            console.log(err);
+        });
     }
 
     render() {

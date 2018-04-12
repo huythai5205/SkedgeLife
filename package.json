@@ -19,13 +19,16 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^3.5.1",
+    "nodemon": "^1.11.0"
+  },
   "bugs": {
     "url": "https://github.com/kennyt85/SkedgeLife/issues"
   },
   "homepage": "https://github.com/kennyt85/SkedgeLife#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
-    "concurrently": "^3.5.1",
     "express": "^4.16.3",
     "mongoose": "^5.0.14",
     "nodemon": "^1.17.3"
