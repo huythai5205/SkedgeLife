@@ -16,7 +16,6 @@ class App extends Component {
       <Router>
         <div className="App">
           <Header />
-          <CreateClassForm />
           <Route exact path="/" component={Home} />
           <Footer />
         </div>
