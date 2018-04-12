@@ -25,7 +25,6 @@ export default class createUserForm extends Component {
 
     onSubmit = event => {
         event.preventDefault();
-        console.log(this.state);
         axios.post('/api/user', this.state).then(data => {
             console.log(data);
         }).catch(err => {
