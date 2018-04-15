@@ -1,8 +1,13 @@
 const db = require('../models');
+const crypto = require('crypto');
 
 module.exports = function (app) {
   //create a user
   app.post('/api/user', (req, res) => {
+    const myKey = crypto.createCipher('aes-128-cbc', 'myPassword');
+    req.body.password = myKey.update(req.body.password, 'utf8', 'hex')
+    req.body.password += myKey.final('hex');
+
     db.User.create(req.body)
       .then(data => res.json(data))
       .catch(err => res.status(422).json(err));
@@ -18,6 +23,18 @@ module.exports = function (app) {
         _id: req.params.id
       }).populate('classesTeaching').populate('classTaking')
       .then(data => res.status(422).json(data));
+  });
+  //get login user with classes they're taking and/or teaching
+  app.get('/api/login/:email', (req, res) => {
+    db.User.findOne({
+        email: req.params.email
+      }).populate('classesTeaching').populate('classTaking')
+      .then(data => {
+        const myKey = crypto.createDecipher('aes-128-cbc', 'myPassword');
+        data.password = myKey.update(data.password, 'hex', 'utf8')
+        data.password += myKey.final('utf8');
+        res.json(data);
+      }).catch(err => res.json(err));
   });
   //delete user
   app.get('api/user/:id', (req, res) => {

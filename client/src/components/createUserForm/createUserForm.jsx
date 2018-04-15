@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import './createUserForm.css';
 
 import axios from 'axios';
@@ -20,13 +21,13 @@ export default class createUserForm extends Component {
 
 
     change = event => {
-        this.setState({ [event.target.name]: event.target.value });
+        this.setState({ [event.target.id]: event.target.value });
     }
 
     onSubmit = event => {
         event.preventDefault();
         axios.post('/api/user', this.state).then(data => {
-            console.log(data);
+            <Redirect to="/dashboard" />;
         }).catch(err => {
             console.log(err);
         });
@@ -35,27 +36,26 @@ export default class createUserForm extends Component {
     render() {
         return (
             <div className="create-user-form">
-
                 <div className="row">
                     <form className="col s12">
                         <div className="input-field col s6">
-                            <input placeholder="First Name" id="first_name" type="text" name="firstName" onChange={this.change} />
-                            <label htmlFor="first_name">*First Name</label>
+                            <input id="firstName" type="text" onChange={this.change} />
+                            <label htmlFor="firstName">*First Name</label>
                         </div>
                         <div className="input-field col s6">
-                            <input placeholder="Last Name" id="Last Name" type="text" name="lastName" onChange={this.change} />
-                            <label htmlFor="last_name">*Last Name</label>
+                            <input id="lastName" type="text" onChange={this.change} />
+                            <label htmlFor="lastName">*Last Name</label>
                         </div>
                         <div className="input-field col s6">
-                            <input placeholder="First Name" id="first_name" type="text" name="email" onChange={this.change} />
-                            <label htmlFor="first_name">*Email</label>
+                            <input id="email" type="text" onChange={this.change} />
+                            <label htmlFor="email">*Email</label>
                         </div>
                         <div className="input-field col s6">
-                            <input placeholder="Password" id="Last Name" type="text" name="password" onChange={this.change} />
-                            <label htmlFor="last_name">*Password</label>
+                            <input id="password" type="text" onChange={this.change} />
+                            <label htmlFor="password">*Password</label>
                         </div>
-                        <input placeholder="First Name" id="first_name" type="text" name="socialURL" onChange={this.change} />
-                        <label htmlFor="first_name">Social Media URL</label>
+                        <input id="socialURL" type="text" onChange={this.change} />
+                        <label htmlFor="socialURL">Social Media URL</label>
                         <button onClick={this.onSubmit}>Submit</button>
                     </form>
                 </div>
