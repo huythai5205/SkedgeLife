@@ -12,8 +12,7 @@ export default class LoginForm extends Component {
         this.state = {
             email: '',
             password: '',
-            errors: {},
-            isLoading: false
+            errors: {}
         };
 
         this.change = this.change.bind(this);
@@ -37,10 +36,14 @@ export default class LoginForm extends Component {
         event.preventDefault();
         if (this.isValid()) {
 
-            this.setState({ errors: {}, isLoading: true });
-            axios.get('./api/login/' + this.state.email).then(data => {
+            axios.get('./api/login/', { email: this.state.email, password: this.state.password }).then(user => {
 
-                console.log(data.data);
+                console.log(user);
+                if (user) {
+                    console.log('correct');
+                } else {
+                    this.setState({ errors: { form: 'Invalid Credentials' } });
+                }
                 return <Redirect to="/dashboard" />;
             }).catch(error => {
                 console.log(error);
@@ -49,11 +52,14 @@ export default class LoginForm extends Component {
     }
 
     render() {
-        const { errors, isLoading } = this.state;
+        const { errors } = this.state;
         return (
             <div className="login-form">
 
                 <h5 className="indigo-text">Please, login into your account</h5>
+
+                <div className="error-message">{errors.form}</div>
+
                 <form className="col s12" onSubmit={this.onSubmit}>
 
                     <div className='row'>
@@ -73,7 +79,7 @@ export default class LoginForm extends Component {
                         </label>
 
                         <br />
-                        <button type='submit' name='btn_login' className='col s12 btn btn-large waves-effect indigo' disabled={isLoading}>Login</button>
+                        <button type='submit' name='btn_login' className='col s12 btn btn-large waves-effect indigo'>Login</button>
                     </div>
                 </form>
                 <a href="#!">Create account</a>
