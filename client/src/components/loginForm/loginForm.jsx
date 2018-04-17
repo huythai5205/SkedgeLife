@@ -36,7 +36,7 @@ export default class LoginForm extends Component {
         event.preventDefault();
         if (this.isValid()) {
 
-            axios.get('./api/login/', { email: this.state.email, password: this.state.password }).then(user => {
+            axios.post('./api/login/', { email: this.state.email, password: this.state.password }).then(user => {
 
                 console.log(user);
                 if (user) {

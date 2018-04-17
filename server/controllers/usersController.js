@@ -25,7 +25,7 @@ module.exports = function (app) {
       .then(data => res.status(422).json(data));
   });
   //get login user with classes they're taking and/or teaching
-  app.get('/api/login/', (req, res) => {
+  app.post('/api/login/', (req, res) => {
     db.User.findOne({
         email: req.body.email
       }).populate('classesTeaching').populate('classTaking')
@@ -33,10 +33,14 @@ module.exports = function (app) {
         const myKey = crypto.createDecipher('aes-128-cbc', 'myPassword');
         data.password = myKey.update(data.password, 'hex', 'utf8')
         data.password += myKey.final('utf8');
-        console.log('32r2fasdf', data.password, req.body.password);
         if (data.password === req.body.password) {
           res.json(data);
+        } else {
+          res(null);
         }
+
+
+
       }).catch(err => res.json(err));
   });
   //delete user
