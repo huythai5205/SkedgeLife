@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+// import { browserHistory } from 'react-router';
 
 import './loginForm.css';
 
 import validateInput from '../../shared/validations';
+
+
 
 export default class LoginForm extends Component {
     constructor(props) {
@@ -39,17 +41,19 @@ export default class LoginForm extends Component {
             axios.post('./api/login/', { email: this.state.email, password: this.state.password }).then(user => {
 
                 console.log(user);
-                if (user) {
-                    console.log('correct');
-                } else {
-                    this.setState({ errors: { form: 'Invalid Credentials' } });
-                }
-                return <Redirect to="/dashboard" />;
+                console.log('correct');
+                // browserHistory.push('/dashboard');
+                // this.context.router.push('/');
+                localStorage.setItem('userToken', user.data);
+
+
             }).catch(error => {
-                console.log(error);
+                this.setState({ errors: error.response.data.errors })
             });
         }
     }
+
+
 
     render() {
         const { errors } = this.state;
@@ -87,3 +91,8 @@ export default class LoginForm extends Component {
         );
     }
 }
+
+
+// LoginForm.contextTypes = {
+//     router: React.PropTypes.object.isRequired
+// };
