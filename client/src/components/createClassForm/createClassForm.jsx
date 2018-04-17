@@ -1,58 +1,83 @@
 import React, { Component } from "react";
 import "./createClassForm.css";
-import { Button, Icon, Row, Col, CardPanel, Card } from "react-materialize";
+import {
+  Button,
+  Icon,
+  Row,
+  Col,
+  CardPanel,
+  Card,
+  Input
+} from "react-materialize";
 
 export default class CreateClassForm extends Component {
   render() {
     return (
       <div className="createClassForm">
-        <form className="col s12">
-          <div className="row">
-            <div className="input-field col s6">
-              <input
-                placeholder="Beginners Yoga..."
-                id="class_name"
-                type="text"
-                className="validate"
-              />
-              <label htmlFor="class_name">Class Name</label>
-            </div>
-
-            <div className="input-field col s6">
-              <input id="location" type="text" className="validate" />
-              <label htmlFor="location">Location</label>
-            </div>
-          </div>
-
-          <div className="row">
-            <div className="input-field col s6">
-              <input type="text" className="datepicker" />
-              <label htmlFor="class_date" type="date">
-                Class Date
-              </label>
-            </div>
-
-            <div className="input-field col s6">
-              <input id="class_time" type="text" className="timepicker" />
-              <label htmlFor="class_time">Class Time</label>
-            </div>
-          </div>
-
-          <div className="row">
-            <div className="input-field col s12">
-              <input id="spots_avail" type="text" className="validate" />
-              <label htmlFor="class_name">Spots available (optional)</label>
-            </div>
-          </div>
-
-          <div className="row">
-            <div className="input-field left-align">
-              <button className="btn" id="addClass" type="submit" name="action">
-                Submit <i className="material-icons right">Add Class</i>
-              </button>
-            </div>
-          </div>
-        </form>
+        <Row>
+          <Input id="name" s={6} label="Class Title" onChange={this.change}>
+            <Icon>school</Icon>
+          </Input>
+        </Row>
+        <Row>
+          <Input id="location" s={6} label="Location" onChange={this.change}>
+            <Icon>location_city</Icon>
+          </Input>
+        </Row>
+        <Row>
+          <Input
+            id="date"
+            s={6}
+            name="on"
+            type="date"
+            label="Date"
+            onChange={this.change}
+          >
+            <Icon>today</Icon>
+          </Input>
+        </Row>
+        <Row>
+          <Input
+            id="startTime"
+            s={6}
+            name="on"
+            type="time"
+            label="Start Time"
+            onChange={this.change}
+          >
+            <Icon>schedule</Icon>
+          </Input>
+        </Row>
+        <Row>
+          <Input
+            id="endTime"
+            s={6}
+            name="on"
+            type="time"
+            label="End Time"
+            onChange={this.change}
+          >
+            <Icon>restore</Icon>
+          </Input>
+        </Row>
+        <Row>
+          <Input
+            s={6}
+            type="select"
+            label="Class Repeat"
+            defaultValue="1"
+            onChange={this.change}
+          >
+            <option value="1">None</option>
+            <option value="2">Weekly</option>
+            <option value="3">Monthly</option>
+          </Input>
+        </Row>
+        <Row>
+          <Button waves="light" onClick={this.onSubmit} s={6}>
+            Add Class<Icon left>cloud_upload</Icon>
+          </Button>
+        </Row>
       </div>
     );
   }
