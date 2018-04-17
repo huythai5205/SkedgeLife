@@ -1,12 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import './App.css';
+import "./App.css";
 
 //components
-import Header from './components/header/header';
-import Footer from './components/footer/footer';
+import Header from "./components/header/header";
+import Footer from "./components/footer/footer";
+import CreateClassForm from "./components/createClassForm/createClassForm";
+
 //pages
-import Home from './pages/home/home';
+import Home from "./pages/home/home";
 
 class App extends Component {
   render() {
@@ -14,7 +16,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <Header />
-          <Route exact path='/' component={Home} />
+          <Route exact path="/" component={Home} />
           <Footer />
         </div>
       </Router>
