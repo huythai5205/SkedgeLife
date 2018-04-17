@@ -37,7 +37,6 @@
     "jsonwebtoken": "^8.2.1",
     "lodash.isempty": "^4.4.0",
     "mongoose": "^5.0.14",
-    "nodemon": "^1.17.3",
-    "react-materialize": "^2.2.0"
+    "nodemon": "^1.17.3"
   }
 }
