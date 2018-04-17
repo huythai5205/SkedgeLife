@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import './createUserForm.css';
 
 import axios from 'axios';
@@ -27,7 +27,7 @@ export default class createUserForm extends Component {
     onSubmit = event => {
         event.preventDefault();
         axios.post('/api/user', this.state).then(data => {
-            <Redirect to="/dashboard" />;
+            // <Redirect to="/dashboard" />;
         }).catch(err => {
             console.log(err);
         });

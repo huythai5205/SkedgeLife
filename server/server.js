@@ -29,13 +29,5 @@ mongoose.connect(mongoDB_URI, err => {
       err ? console.log(err) : console.log("App running on port " + PORT + "!")
     });
   }
-<<<<<<< HEAD:server.js
-  require("./controllers/usersController.js")(app);
 
-  app.listen(PORT, err => {
-    err ? console.log(err) : console.log("App running on port " + PORT + "!");
-  });
-=======
-
->>>>>>> 0dc2b4d94e784230a74f793412d6be1161ff1f31:server/server.js
 });
