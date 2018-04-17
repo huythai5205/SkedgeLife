@@ -20,7 +20,11 @@ export default class Home extends Component {
       <div className="home">
         <Row>
           <Carousel
-            fixedItem={<button className="btn">MORE</button>}
+            fixedItem={[
+              <button className="btn">MORE</button>,
+              <button className="btn">TRY ME</button>,
+              <button className="btn">CHECK IT OUT</button>
+            ]}
             options={{
               fullWidth: true,
               indicators: true
@@ -30,7 +34,14 @@ export default class Home extends Component {
               "https://cdlnws.a.ssl.fastly.net/image/upload/f_auto,q_auto/v1494865224/Blog/college_students.jpg",
               "https://ak3.picdn.net/shutterstock/videos/3684833/thumb/1.jpg"
             ]}
-          />
+            // children={[<p>Hey you</p>, <p>Hey you two</p>]}
+          >
+            <div className="parallax-container">
+              <h3>First carousel panel</h3>
+              <p>you could do all kinds of stuff</p>
+              <button className="btn">MORE</button>
+            </div>
+          </Carousel>
         </Row>
         <Row>
           <Col m={4} s={12}>
@@ -88,12 +99,14 @@ export default class Home extends Component {
           </Col>
         </Row>
         <Row>
-          <Parallax imageSrc="https://scontent.fapa1-2.fna.fbcdn.net/v/t1.0-9/30704042_10156138948371113_5893660926522949632_n.jpg?_nc_cat=0&oh=4d7f81708cba681211b72868653c84c2&oe=5B6EDBD2" />
-          <p className="grey-text text-darken-3 lighten-3">
-            Parallax is an effect where the background content or image in this
-            case, is moved at a different speed than the foreground content
-            while scrolling.
-          </p>
+          <div className="parallax-container">
+            <Parallax imageSrc="https://scontent.fapa1-2.fna.fbcdn.net/v/t1.0-9/30704042_10156138948371113_5893660926522949632_n.jpg?_nc_cat=0&oh=4d7f81708cba681211b72868653c84c2&oe=5B6EDBD2" />
+            <p className="grey-text text-darken-3 lighten-3">
+              Parallax is an effect where the background content or image in
+              this case, is moved at a different speed than the foreground
+              content while scrolling.
+            </p>
+          </div>
         </Row>
       </div>
     );
