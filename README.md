@@ -9,6 +9,4 @@ npm install
 
 cd ..
 
-run 'node server.js' in one terminal
-
-run 'npm start'
+run 'npm run start'
