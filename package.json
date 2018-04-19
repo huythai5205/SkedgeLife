@@ -37,6 +37,9 @@
     "jsonwebtoken": "^8.2.1",
     "lodash.isempty": "^4.4.0",
     "mongoose": "^5.0.14",
-    "nodemon": "^1.17.3"
+    "nodemon": "^1.17.3",
+    "react-hot-loader": "^4.1.0",
+    "webpack-dev-middleware": "^3.1.2",
+    "webpack-hot-middleware": "^2.22.1"
   }
 }

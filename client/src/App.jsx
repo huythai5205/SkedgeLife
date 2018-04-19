@@ -6,13 +6,14 @@ import "./App.css";
 
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
-import CreateUserForm from "./components/createUserForm/createUserForm";
+import CreateUserPage from "./components/createUserForm/createUserPage";
 import CreateClassForm from "./components/createClassForm/createClassForm";
 import LoginForm from "./components/loginForm/loginForm";
 //pages
 import Home from "./pages/home/home";
 import Dashboard from "./pages/dashboard/dashboard";
 import Profile from "./pages/profile/profile";
+
 
 class App extends Component {
   render() {
@@ -26,7 +27,7 @@ class App extends Component {
             <Route exact path="/profile" component={Profile} />
           </Switch>
           <LoginForm />
-          <CreateUserForm />
+          <CreateUserPage />
           <CreateClassForm />
           <Footer />
         </div>
@@ -34,5 +35,6 @@ class App extends Component {
     );
   }
 }
+
 
 export default App;

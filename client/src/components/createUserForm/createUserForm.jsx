@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 // import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './createUserForm.css';
 
 import axios from 'axios';
 
-export default class createUserForm extends Component {
+export default class CreateUserForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -26,11 +27,12 @@ export default class createUserForm extends Component {
 
     onSubmit = event => {
         event.preventDefault();
-        axios.post('/api/user', this.state).then(data => {
-            // <Redirect to="/dashboard" />;
-        }).catch(err => {
-            console.log(err);
-        });
+        this.props.createUserRequest(this.state);
+        // axios.post('/api/user', this.state).then(data => {
+        //     // <Redirect to="/dashboard" />;
+        // }).catch(err => {
+        //     console.log(err);
+        // });
     }
 
     render() {
@@ -63,4 +65,8 @@ export default class createUserForm extends Component {
             </div>
         );
     }
+}
+
+CreateUserForm.protoTypes = {
+    createUserRequest: PropTypes.func.isRequired
 }
