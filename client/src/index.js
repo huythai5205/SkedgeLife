@@ -9,15 +9,14 @@ import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux'
 
 import setAuthorizationToken from './utils/setAuthorizationToken';
-import jwtDecode from 'jwt-decode';
-import { setCurrentUser } from './actions/authActions';
+import jwt from 'jsonwebtoken';
 
 
 const store = configureStore();
 
 if (localStorage.userToken) {
     setAuthorizationToken(localStorage.userToken);
-    store.dispatch(setCurrentUser(jwtDecode(localStorage.userToken)));
+    // store.dispatch(setCurrentUser(jwtDecode(localStorage.userToken)));
 }
 
 render(

@@ -1,6 +1,4 @@
-import {
-  SET_CURRENT_USER
-} from './actionTypes';
+import { SET_CURRENT_USER } from './actionTypes';
 
 export function setCurrentUser(user) {
   return {

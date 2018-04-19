@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 // import { browserHistory } from 'react-router';
 import setAuthorizationToken from '../../utils/setAuthorizationToken';
-import setCurrentUser from '../../redux/actions/setCurrentUser';
+// import setCurrentUser from '../../redux/actions/setCurrentUser';
 import './loginForm.css';
 
 import validateInput from '../../shared/validations';
@@ -48,7 +48,7 @@ export default class LoginForm extends Component {
                 const token = user.data;
                 localStorage.setItem('userToken', token);
                 setAuthorizationToken(token);
-                setCurrentUser(jwt.decode(token));
+                // setCurrentUser(jwt.decode(token));
 
             }).catch(error => {
                 this.setState({ errors: error.response.data.errors })
