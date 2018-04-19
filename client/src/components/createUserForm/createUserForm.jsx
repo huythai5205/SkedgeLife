@@ -27,12 +27,12 @@ export default class CreateUserForm extends Component {
 
     onSubmit = event => {
         event.preventDefault();
-        this.props.createUserRequest(this.state);
-        // axios.post('/api/user', this.state).then(data => {
-        //     // <Redirect to="/dashboard" />;
-        // }).catch(err => {
-        //     console.log(err);
-        // });
+        // this.props.createUserRequest(this.state);
+        axios.post('/api/user', this.state).then(user => {
+            // <Redirect to="/dashboard" />;
+        }).catch(err => {
+            console.log(err);
+        });
     }
 
     render() {
@@ -65,8 +65,4 @@ export default class CreateUserForm extends Component {
             </div>
         );
     }
-}
-
-CreateUserForm.protoTypes = {
-    createUserRequest: PropTypes.func.isRequired
 }

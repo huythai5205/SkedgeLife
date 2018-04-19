@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 // import { browserHistory } from 'react-router';
-
+import setAuthorizationToken from '../../utils/setAuthorizationToken';
+import setCurrentUser from '../../redux/actions/setCurrentUser';
 import './loginForm.css';
 
 import validateInput from '../../shared/validations';
 
-
+import jwt from 'jsonwebtoken';
 
 export default class LoginForm extends Component {
     constructor(props) {
@@ -44,8 +45,10 @@ export default class LoginForm extends Component {
                 console.log('correct');
                 // browserHistory.push('/dashboard');
                 // this.context.router.push('/');
-                localStorage.setItem('userToken', user.data);
-
+                const token = user.data;
+                localStorage.setItem('userToken', token);
+                setAuthorizationToken(token);
+                setCurrentUser(jwt.decode(token));
 
             }).catch(error => {
                 this.setState({ errors: error.response.data.errors })
