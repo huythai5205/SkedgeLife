@@ -5,6 +5,7 @@ import "./App.css";
 //components
 
 import Header from "./components/header/header";
+import FlashMessageList from "./components/flashMessageList/flashMessageList";
 import Footer from "./components/footer/footer";
 import CreateUserPage from "./components/createUserForm/createUserPage";
 import CreateClassForm from "./components/createClassForm/createClassForm";
@@ -21,6 +22,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <Header />
+          <FlashMessageList />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/dashboard" component={Dashboard} />

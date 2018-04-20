@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import axios from 'axios';
-// import { browserHistory } from 'react-router';
 import setAuthorizationToken from '../../utils/setAuthorizationToken';
-// import setCurrentUser from '../../redux/actions/setCurrentUser';
+import setCurrentUser from '../../redux/actions/setCurrentUser';
 import './loginForm.css';
 
+import { connect } from 'react-redux';
 import validateInput from '../../shared/validations';
-
+import { addFlashMessage } from '../../redux/actions/flashMessages';
 import jwt from 'jsonwebtoken';
 
-export default class LoginForm extends Component {
+class LoginForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -43,12 +44,15 @@ export default class LoginForm extends Component {
 
                 console.log(user);
                 console.log('correct');
-                // browserHistory.push('/dashboard');
-                // this.context.router.push('/');
                 const token = user.data;
                 localStorage.setItem('userToken', token);
                 setAuthorizationToken(token);
+                this.props.addFlashMessage({
+                    type: 'success',
+                    text: 'You have logged in'
+                });
                 // setCurrentUser(jwt.decode(token));
+                this.context.router.history.push('/dashboard');
 
             }).catch(error => {
                 this.setState({ errors: error.response.data.errors })
@@ -96,6 +100,9 @@ export default class LoginForm extends Component {
 }
 
 
-// LoginForm.contextTypes = {
-//     router: React.PropTypes.object.isRequired
-// };
+LoginForm.contextTypes = {
+    router: PropTypes.object.isRequired,
+    addFlashMessage: PropTypes.func.isRequired
+};
+
+export default connect(null, { addFlashMessage })(LoginForm);

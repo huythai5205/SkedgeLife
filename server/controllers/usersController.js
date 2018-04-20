@@ -3,32 +3,45 @@ const crypto = require("crypto");
 const jwt = require('jsonwebtoken');
 const config = require('../config');
 
+
+const encryptPassword = (password) => {
+  const myKey = crypto.createCipher("aes-128-cbc", "myPassword");
+  password = myKey.update(password, "utf8", "hex");
+  password += myKey.final("hex");
+  return password;
+}
+
+const decryptPassword = (password) => {
+  const myKey = crypto.createDecipher("aes-128-cbc", "myPassword");
+  password = myKey.update(password, "hex", "utf8");
+  password += myKey.final("utf8");
+  return password
+}
+
+
 module.exports = function (app) {
   //create a user
   app.post("/api/user", (req, res) => {
-    const myKey = crypto.createCipher("aes-128-cbc", "myPassword");
-    req.body.password = myKey.update(req.body.password, "utf8", "hex");
-    req.body.password += myKey.final("hex");
-
+    req.body.password = encryptPassword(req.body.password);
     db.User.create(req.body)
-      .then(data => res.json(data))
-      .catch(err => res.status(422).json(err));
+      .then(user => {
+        user.password = decryptPassword(user.password);
+        console.log(user);
+        jwt.sign({
+          user
+        }, config.default.jwtSecret, (err, token) => {
+          res.json(token);
+        });
+      }).catch(err => res.status(422).json(err));
   });
+
   //get all users
   app.get("/api/users", (req, res) => {
     db.User.find({})
       .then(data => res.json(data))
       .catch(err => res.status(422).json(err));
   });
-  //get one user with classes they're taking and/or teaching
-  app.get("/api/user/:id", (req, res) => {
-    db.User.findOne({
-        _id: req.params.id
-      })
-      .populate("classesTeaching")
-      .populate("classTaking")
-      .then(data => res.status(422).json(data));
-  });
+
   //get login user with classes they're taking and/or teaching
   app.post("/api/login/", (req, res) => {
     db.User.findOne({
@@ -38,10 +51,7 @@ module.exports = function (app) {
       .populate("classTaking")
       .then(user => {
         if (user) {
-          const myKey = crypto.createDecipher("aes-128-cbc", "myPassword");
-          user.password = myKey.update(user.password, "hex", "utf8");
-          user.password += myKey.final("utf8");
-          if (user.password === req.body.password) {
+          if (decryptPassword(user.password) === req.body.password) {
             jwt.sign({
               user
             }, config.default.jwtSecret, (err, token) => {
@@ -61,10 +71,10 @@ module.exports = function (app) {
             }
           });
         }
-
       })
       .catch(err => res.json(err));
   });
+
   //delete user
   app.get("api/user/:id", (req, res) => {
     db.User.remove({

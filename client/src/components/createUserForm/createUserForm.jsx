@@ -28,7 +28,8 @@ export default class CreateUserForm extends Component {
     onSubmit = event => {
         event.preventDefault();
         // this.props.createUserRequest(this.state);
-        axios.post('/api/user', this.state).then(user => {
+        axios.post('/api/user', this.state).then(token => {
+            const userToken = token.data;
             // <Redirect to="/dashboard" />;
         }).catch(err => {
             console.log(err);

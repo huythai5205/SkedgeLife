@@ -12,15 +12,15 @@ const PORT = process.env.PORT || 3001;
 const mongoDB_URI = process.env.MONGODB_URI || "mongodb://localhost/skedgeLife";
 
 
-const compiler = webpack(webpackConfig);
+// const compiler = webpack(webpackConfig);
 
-app.use(webpackMiddleware(compiler, {
-  hot: true,
-  publicPath: webpackConfig.output.publicPath,
-  noInfo: true
-}));
+// app.use(webpackMiddleware(compiler, {
+//   hot: true,
+//   publicPath: webpackConfig.output.publicPath,
+//   noInfo: true
+// }));
 
-app.use(webpackHotMiddleware(compiler));
+// app.use(webpackHotMiddleware(compiler));
 
 app.use(
   bodyParser.urlencoded({
