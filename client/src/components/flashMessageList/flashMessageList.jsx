@@ -11,11 +11,15 @@ class FlashMessageList extends Component {
             console.log('div', message);
             console.log('message id', message.id);
             console.log('message text', message.text);
-            <FlashMessage key={message.id} message={message.text} />
+            return <FlashMessage key={message.id} message={message.text} />
         });
+        console.log('messages', messages);
         return (
-            <div className="flashMessageList">
-                {messages}{console.log(messages)}
+            <div>
+                {/* {this.props.messages.map(message => {
+                    return (<FlashMessage key={message.id} message={message.text} />);
+                })} */}
+                {messages}
             </div>
         );
     }
