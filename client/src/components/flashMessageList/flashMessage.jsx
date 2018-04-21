@@ -29,8 +29,7 @@ class FlashMessage extends React.Component {
 }
 
 FlashMessage.propTypes = {
-    message: PropTypes.object.isRequired,
-    deleteFlashMessage: React.PropTypes.func.isRequired
+    message: PropTypes.object.isRequired
 }
 
 export default FlashMessage;
