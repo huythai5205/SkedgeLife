@@ -9,3 +9,12 @@
   padding: 0px 10px;
   vertical-align: bottom;
 }
+.slider-text-sm {
+  font-size: 16px;
+  color: grey;
+}
+Slide.title {
+  font-size: 24px;
+  color: grey;
+  text-align: center;
+}
