@@ -11,11 +11,15 @@ const ClassSchema = new Schema({
     type: String,
     required: true
   },
-  time: {
-    type: String,
+  startDate: {
+    type: Date,
     required: true
   },
-  seatsAvailable: String,
+  endDate: {
+    type: Date,
+    required: true
+  },
+  seatsAvailable: Number,
   instructor: {
     type: Schema.Types.ObjectId,
     ref: "User"

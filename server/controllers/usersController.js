@@ -24,11 +24,10 @@ module.exports = function (app) {
   app.post("/api/user", (req, res) => {
     req.body.password = encryptPassword(req.body.password);
     db.User.create(req.body)
-      .then(user => {
-        user.password = decryptPassword(user.password);
-        console.log(user);
+      .then(userData => {
+        userData.password = decryptPassword(userData.password);
         jwt.sign({
-          user
+          userData
         }, config.default.jwtSecret, (err, token) => {
           res.json(token);
         });
@@ -38,7 +37,7 @@ module.exports = function (app) {
   //get all users
   app.get("/api/users", (req, res) => {
     db.User.find({})
-      .then(data => res.json(data))
+      .then(usersData => res.json(usersData))
       .catch(err => res.status(422).json(err));
   });
 
@@ -49,11 +48,11 @@ module.exports = function (app) {
       })
       .populate("classesTeaching")
       .populate("classTaking")
-      .then(user => {
-        if (user) {
-          if (decryptPassword(user.password) === req.body.password) {
+      .then(userData => {
+        if (userData) {
+          if (decryptPassword(userData.password) === req.body.password) {
             jwt.sign({
-              user
+              userData
             }, config.default.jwtSecret, (err, token) => {
               res.json(token);
             });
@@ -80,12 +79,12 @@ module.exports = function (app) {
     db.User.remove({
         _id: req.params.id
       })
-      .then(data => res.json(data))
+      .then(userData => res.json(userData))
       .catch(err => res.status(422).json(err));
   });
 
   // Route for saving/updating an Article's associated Note
-  app.post("/articles/:id", function (req, res) {
+  app.post("/user/:id", function (req, res) {
     // Create a new note and pass the req.body to the entry
     db.Note.create(req.body)
       .then(function (dbNote) {

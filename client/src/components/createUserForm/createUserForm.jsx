@@ -61,7 +61,6 @@ export default class CreateUserForm extends Component {
                         <button onClick={this.onSubmit}>Submit</button>
                     </form>
                 </div>
-
             </div>
         );
     }

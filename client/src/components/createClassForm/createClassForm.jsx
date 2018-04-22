@@ -1,76 +1,77 @@
 import React, { Component } from "react";
 import "./createClassForm.css";
-import { Button, Icon, Row, Input } from "react-materialize";
+import { connect } from 'react-redux';
+import axios from 'axios';
 
-export default class CreateClassForm extends Component {
+class CreateClassForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      location: '',
+      startDate: '',
+      endData: '',
+      seatsAvailable: 0,
+      instructor: {}
+    }
+
+    this.change = this.change.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  change = event => {
+    this.setState({ [event.target.id]: event.target.value });
+  }
+
+  onSubmit = event => {
+    event.preventDefault();
+    this.setState({ instructor: this.props.currentUser });
+    // this.props.createUserRequest(this.state);
+    axios.post('/api/class', this.state).then(token => {
+      // const userToken = token.data;
+      // <Redirect to="/dashboard" />;
+    }).catch(err => {
+      console.log(err);
+    });
+  }
+
   render() {
     return (
       <div className="createClassForm">
-        <Row>
-          <Input id="name" s={6} label="Class Title" onChange={this.change}>
-            <Icon>school</Icon>
-          </Input>
-        </Row>
-        <Row>
-          <Input id="location" s={6} label="Location" onChange={this.change}>
-            <Icon>location_city</Icon>
-          </Input>
-        </Row>
-        <Row>
-          <Input
-            id="date"
-            s={6}
-            name="on"
-            type="date"
-            label="Date"
-            onChange={this.change}
-          >
-            <Icon>today</Icon>
-          </Input>
-        </Row>
-        <Row>
-          <Input
-            id="startTime"
-            s={6}
-            name="on"
-            type="time"
-            label="Start Time"
-            onChange={this.change}
-          >
-            <Icon>schedule</Icon>
-          </Input>
-        </Row>
-        <Row>
-          <Input
-            id="endTime"
-            s={6}
-            name="on"
-            type="time"
-            label="End Time"
-            onChange={this.change}
-          >
-            <Icon>restore</Icon>
-          </Input>
-        </Row>
-        <Row>
-          <Input
-            s={6}
-            type="select"
-            label="Class Repeat"
-            defaultValue="1"
-            onChange={this.change}
-          >
-            <option value="1">None</option>
-            <option value="2">Weekly</option>
-            <option value="3">Monthly</option>
-          </Input>
-        </Row>
-        <Row>
-          <Button waves="light" onClick={this.onSubmit} s={6}>
-            Add Class<Icon left>cloud_upload</Icon>
-          </Button>
-        </Row>
+        <div className="row">
+          <form className="col s12">
+            <div className="input-field col s6">
+              <input id="name" type="text" onChange={this.change} />
+              <label htmlFor="name">*Class Name:</label>
+            </div>
+            <div className="input-field col s6">
+              <input id="location" type="text" onChange={this.change} />
+              <label htmlFor="location">*Location:</label>
+            </div>
+            <div className="input-field col s6">
+              <input id="startDate" type="datetime" onChange={this.change} />
+              <label htmlFor="startDate">*Class Starts Date:</label>
+            </div>
+            <div className="input-field col s6">
+              <input id="endDate" type="date" onChange={this.change} />
+              <label htmlFor="endDate">*Class Ends Date:</label>
+            </div>
+            <div className="input-field col s6">
+              <input id="seatsAvailable" type="number" onChange={this.change} />
+              <label htmlFor="seatsAvailable">*Seats Available:</label>
+            </div>
+            <button onClick={this.onSubmit}>Submit</button>
+          </form>
+        </div>
+
       </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    currentUser: state.userReducers
+  }
+}
+export default connect(mapStateToProps)(CreateClassForm);
