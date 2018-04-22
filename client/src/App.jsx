@@ -11,9 +11,9 @@ import CreateUserPage from "./components/createUserForm/createUserPage";
 import CreateClassForm from "./components/createClassForm/createClassForm";
 import LoginForm from "./components/loginForm/loginForm";
 //pages
-import Home from "./pages/home/home";
-import Dashboard from "./pages/dashboard/dashboard";
-import Profile from "./pages/profile/profile";
+import HomePage from "./pages/homePage/homePage";
+import DashboardPage from "./pages/dashboardPage/dashboardPage";
+import ProfilePage from "./pages/profilePage/profilePage";
 
 
 class App extends Component {
@@ -24,9 +24,9 @@ class App extends Component {
           <Header />
           <FlashMessageList />
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/dashboardPage" component={DashboardPage} />
+            <Route exact path="/profilePage" component={ProfilePage} />
           </Switch>
           <LoginForm />
           <CreateUserPage />

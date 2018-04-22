@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-// import { Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import './createUserForm.css';
 
 import axios from 'axios';
@@ -29,7 +28,7 @@ export default class CreateUserForm extends Component {
         event.preventDefault();
         // this.props.createUserRequest(this.state);
         axios.post('/api/user', this.state).then(token => {
-            const userToken = token.data;
+            // const userToken = token.data;
             // <Redirect to="/dashboard" />;
         }).catch(err => {
             console.log(err);

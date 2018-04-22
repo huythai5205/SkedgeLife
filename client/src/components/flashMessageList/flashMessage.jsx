@@ -13,8 +13,7 @@ class FlashMessage extends React.Component {
     }
 
     render() {
-        const { id, type, text } = this.props;
-        console.log("fasdf", this.props);
+        const { type, text } = this.props.message;
 
         return (
             <div className={classnames('alert', {
@@ -22,14 +21,15 @@ class FlashMessage extends React.Component {
                 'alert-danger': type === 'error'
             })}>
                 <button onClick={this.onClick} className="close"><span>&times;</span></button>
-                {text}fasd
+                {text}
             </div>
         );
     }
 }
 
 FlashMessage.propTypes = {
-    message: PropTypes.object.isRequired
+    message: PropTypes.object.isRequired,
+    deleteFlashMessage: PropTypes.func.isRequired
 }
 
 export default FlashMessage;

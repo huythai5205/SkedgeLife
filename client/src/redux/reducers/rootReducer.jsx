@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
-import userReducer from './userReducer';
-import classReducer from './classReducer';
-import flashMessages from './flashMessages';
+import userReducers from './userReducers';
+import classReducers from './classReducers';
+import flashMessageReducers from './flashMessageReducers';
 
 const rootReducer = combineReducers({
-  userReducer,
-  classReducer,
-  flashMessages
+  userReducers,
+  classReducers,
+  flashMessageReducers
 });
 
 export default rootReducer;

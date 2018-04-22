@@ -9,7 +9,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux'
 
 import setAuthorizationToken from './utils/setAuthorizationToken';
-import jwt from 'jsonwebtoken';
+// import jwt from 'jsonwebtoken';
 
 
 const store = configureStore();
