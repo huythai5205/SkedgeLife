@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import PropTypes from "prop-types";
 import axios from 'axios';
-
+import setAuthorizationToken from '../../utils/setAuthorizationToken';
+// import setCurrentUser from '../../redux/actions/setCurrentUser';
 import './loginForm.css';
 
+import { connect } from 'react-redux';
 import validateInput from '../../shared/validations';
+import { addFlashMessage } from '../../redux/actions/flashMessageActions';
+import { setCurrentUser } from '../../redux/actions/userActions';
+import jwt from 'jsonwebtoken';
 
-export default class LoginForm extends Component {
+class LoginForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -38,18 +43,26 @@ export default class LoginForm extends Component {
 
             axios.post('./api/login/', { email: this.state.email, password: this.state.password }).then(user => {
 
-                console.log(user);
-                if (user) {
-                    console.log('correct');
-                } else {
-                    this.setState({ errors: { form: 'Invalid Credentials' } });
-                }
-                return <Redirect to="/dashboard" />;
+                const token = user.data;
+                localStorage.setItem('userToken', token);
+                setAuthorizationToken(token);
+                const currentUser = jwt.decode(token);
+                console.log(currentUser);
+                this.props.setCurrentUser(currentUser);
+                this.props.addFlashMessage({
+                    type: 'success',
+                    text: 'You have logged in'
+                });
+                // setCurrentUser(jwt.decode(token));
+                this.context.router.history.push('/profilePage');
+
             }).catch(error => {
-                console.log(error);
+                this.setState({ errors: error.response.data.errors })
             });
         }
     }
+
+
 
     render() {
         const { errors } = this.state;
@@ -87,3 +100,10 @@ export default class LoginForm extends Component {
         );
     }
 }
+
+
+LoginForm.contextTypes = {
+    router: PropTypes.object.isRequired
+};
+
+export default connect(null, { addFlashMessage, setCurrentUser })(LoginForm);

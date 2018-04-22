@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import './dashboard.css';
+import './dashboardPage.css';
 
-export default class Dashboard extends Component {
+export default class DashboardPage extends Component {
     render() {
         return (
-            <div className="dashboard">
+            <div className="dashboardPage">
                 <p>dashboard  working</p>
             </div>
         );

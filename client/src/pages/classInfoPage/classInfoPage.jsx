@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './classInfo.css';
+import './classInfoPage.css';
 
-export default class ClassInfo extends Component {
+export default class ClassInfoPage extends Component {
     render() {
         return (
             <div className="class-info">

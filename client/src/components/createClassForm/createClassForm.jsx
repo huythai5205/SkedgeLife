@@ -1,14 +1,6 @@
 import React, { Component } from "react";
 import "./createClassForm.css";
-import {
-  Button,
-  Icon,
-  Row,
-  Col,
-  CardPanel,
-  Card,
-  Input
-} from "react-materialize";
+import { Button, Icon, Row, Input } from "react-materialize";
 
 export default class CreateClassForm extends Component {
   render() {
