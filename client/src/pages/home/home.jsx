@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import "./home.css";
 
 //components:
-// import LandingPageCarousel from "../../components/landingPageCarousel/landingPageCarousel";
+import Header from "../../components/header/header";
+import Footer from "../../components/footer/footer";
+
 import {
   Button,
   Icon,
-  Carousel,
   Row,
   Col,
   CardPanel,
@@ -20,6 +21,7 @@ export default class Home extends Component {
   render() {
     return (
       <div className="home">
+        <Header />
         <Row>
           <Slider>
             <Slide
@@ -111,6 +113,7 @@ export default class Home extends Component {
             while scrolling.
           </p>
         </Row>
+        <Footer />
       </div>
     );
   }

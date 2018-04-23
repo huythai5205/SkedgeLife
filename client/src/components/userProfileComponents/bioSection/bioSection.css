@@ -1,0 +1,26 @@
+.bioTitle {
+  color: #5f04b4;
+  font-size: 40px;
+  font-family: "Lobster", cursive;
+}
+
+.bioImg {
+  float: left;
+  height: 600px;
+  margin: 0px 0px 0px 70px;
+}
+
+.bioText {
+  float: left;
+  background-color: #ffbbec;
+  height: 600px;
+  margin: -15px 70px 0px 20px;
+  padding: 40px;
+}
+
+.bioHr {
+  width: 86.5%;
+  background-color: #4c0be0;
+  background-image: linear-gradient(88deg, #4c0be0 0%, #ffbbec 100%);
+  height: 8px;
+}
