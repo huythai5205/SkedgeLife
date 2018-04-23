@@ -4,19 +4,21 @@ import './index.css';
 import App from './App';
 import configureStore from './redux/store/configureStore';
 import registerServiceWorker from './registerServiceWorker';
+import { setCurrentUser } from './redux/actions/userActions';
+import jwt from 'jsonwebtoken';
 
 //redux
 import { Provider } from 'react-redux'
 
-import setAuthorizationToken from './utils/setAuthorizationToken';
+import setAuthorization from './utils/setAuthorization';
 // import jwt from 'jsonwebtoken';
 
 
 const store = configureStore();
 
 if (localStorage.userToken) {
-    setAuthorizationToken(localStorage.userToken);
-    // store.dispatch(setCurrentUser(jwtDecode(localStorage.userToken)));
+    setAuthorization(localStorage.userToken);
+    store.dispatch(setCurrentUser(jwt.decode(localStorage.userToken)));
 }
 
 render(

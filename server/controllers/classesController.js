@@ -3,7 +3,7 @@ const db = require('../models');
 module.exports = function (app) {
   //create a class
   app.post('/api/class', (req, res) => {
-    db.Class.create(req.body.class)
+    db.Class.create(req.body)
       .then(classData => res.json(classData))
       .catch(err => res.status(422).json(err));
   });

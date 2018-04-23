@@ -9,6 +9,8 @@ class CreateClassForm extends Component {
     this.state = {
       name: '',
       location: '',
+      startTime: '',
+      endTime: '',
       startDate: '',
       endData: '',
       seatsAvailable: 0,
@@ -25,17 +27,21 @@ class CreateClassForm extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    this.setState({ instructor: this.props.currentUser });
+    this.setState(...this.state, { instructor: this.props.currentUser });
     // this.props.createUserRequest(this.state);
-    axios.post('/api/class', this.state).then(token => {
-      // const userToken = token.data;
-      // <Redirect to="/dashboard" />;
-    }).catch(err => {
-      console.log(err);
-    });
+    console.log(this.state.instructor);
+    console.log(this.state);
+    // axios.post('/api/class', this.state).then(classData => {
+    //   console.log(classData);
+    //   // const userToken = token.data;
+    //   // <Redirect to="/dashboard" />;
+    // }).catch(err => {
+    //   console.log(err);
+    // });
   }
 
   render() {
+    console.log(this.props.currentUser);
     return (
       <div className="createClassForm">
         <div className="row">
@@ -49,12 +55,20 @@ class CreateClassForm extends Component {
               <label htmlFor="location">*Location:</label>
             </div>
             <div className="input-field col s6">
-              <input id="startDate" type="datetime" onChange={this.change} />
-              <label htmlFor="startDate">*Class Starts Date:</label>
+              <label className="col s6" htmlFor="startDate">*Class Starts Time:</label>
+              <input className="col s6" id="startTime" type="time" onChange={this.change} />
             </div>
             <div className="input-field col s6">
-              <input id="endDate" type="date" onChange={this.change} />
-              <label htmlFor="endDate">*Class Ends Date:</label>
+              <input className="col s6" id="endTime" type="time" onChange={this.change} />
+              <label className="col s6" htmlFor="endDate">*Class Ends Time:</label>
+            </div>
+            <div className="input-field col s6">
+              <input className="col s6" id="startDate" type="date" onChange={this.change} />
+              <label className="col s6" htmlFor="startDate">*Class Starts Date:</label>
+            </div>
+            <div className="input-field col s6">
+              <input className="col s6" id="endDate" type="date" onChange={this.change} />
+              <label className="col s6" htmlFor="endDate">*Class Ends Date:</label>
             </div>
             <div className="input-field col s6">
               <input id="seatsAvailable" type="number" onChange={this.change} />
