@@ -11,6 +11,7 @@ import jwt from 'jsonwebtoken';
 import { Provider } from 'react-redux'
 
 import setAuthorization from './utils/setAuthorization';
+import { setSelectedClass } from './redux/actions/classActions';
 // import jwt from 'jsonwebtoken';
 
 
@@ -19,6 +20,10 @@ const store = configureStore();
 if (localStorage.userToken) {
     setAuthorization(localStorage.userToken);
     store.dispatch(setCurrentUser(jwt.decode(localStorage.userToken)));
+}
+
+if (localStorage.selectedClass) {
+    store.dispatch(setSelectedClass(JSON.parse(localStorage.selectedClass)));
 }
 
 render(

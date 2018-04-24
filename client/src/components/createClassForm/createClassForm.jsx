@@ -1,13 +1,18 @@
 import React, { Component } from "react";
 import "./createClassForm.css";
-import { connect } from 'react-redux';
+import PropTypes from "prop-types";
 import axios from 'axios';
+
+import { connect } from 'react-redux';
+import { setCurrentUser } from '../../redux/actions/userActions';
+import { setSelectedClass } from '../../redux/actions/classActions';
+
 
 class CreateClassForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
+      name: '1',
       location: '1',
       startTime: '1',
       endTime: '1',
@@ -35,18 +40,23 @@ class CreateClassForm extends Component {
 
   change = event => {
     this.setState({ [event.target.id]: event.target.value });
+
   }
 
   onSubmit = event => {
     event.preventDefault();
     const currentState = this.state;
-    axios.post('/api/class', currentState).then(classData => {
+    axios.post('/api/class/' + this.props.currentUser.user.userData._id, currentState).then(classData => {
       console.log(classData);
       // const userToken = token.data;
       // <Redirect to="/dashboard" />;
     }).catch(err => {
       console.log(err);
     });
+
+    this.props.setSelectedClass(this.state);
+    localStorage.setItem('selectedClass', JSON.stringify(this.state));
+    this.context.router.history.push('/classInfoPage');
   }
 
   render() {
@@ -96,4 +106,10 @@ function mapStateToProps(state) {
     currentUser: state.userReducers
   }
 }
-export default connect(mapStateToProps)(CreateClassForm);
+
+CreateClassForm.contextTypes = {
+  router: PropTypes.object.isRequired
+};
+
+
+export default connect(mapStateToProps, { setCurrentUser, setSelectedClass })(CreateClassForm);

@@ -1,12 +1,20 @@
 const db = require('../models');
-
+//TODO: ask why can't return data
 module.exports = function (app) {
-  //create a class
-  app.post('/api/class', (req, res) => {
-    console.log(req.body);
+  //create a class with intructorID
+  app.post('/api/class/:instructorID', (req, res) => {
+    console.log("class");
     db.Class.create(req.body)
       .then(classData => {
-        res.json(classData)
+        return db.User.findOneAndUpdate({
+          _id: req.params.instructorID
+        }, {
+          $push: {
+            classesTeaching: classData._id
+          }
+        });
+        res.json(classData);
+        console.log("classData");
       })
       .catch(err => {
         console.log(err);

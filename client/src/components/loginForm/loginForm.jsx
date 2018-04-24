@@ -25,6 +25,7 @@ class LoginForm extends Component {
     }
 
     change = event => {
+        event.preventDefault();
         this.setState({ [event.target.id]: event.target.value });
     }
 

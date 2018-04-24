@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import "./header.css";
 import PropTypes from "prop-types";
+import { logout } from '../../redux/actions/userActions';
 
 class Header extends Component {
 
@@ -10,6 +11,7 @@ class Header extends Component {
   logout = event => {
     event.preventDefault()
     this.props.logout();
+    this.context.router.history.push('/');
   }
 
   render() {
@@ -52,10 +54,15 @@ class Header extends Component {
 Header.propsTypes = {
   logout: PropTypes.func.isRequired
 }
+
 function mapStateToProps(state) {
   return {
     currentUser: state.userReducers
   }
 }
 
-export default connect(mapStateToProps)(Header);
+Header.contextTypes = {
+  router: PropTypes.object.isRequired
+};
+
+export default connect(mapStateToProps, { logout })(Header);

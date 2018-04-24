@@ -4,7 +4,7 @@ import "./homePage.css";
 //components:
 // import LandingPageCarousel from "../../components/landingPageCarousel/landingPageCarousel";
 import {
-  Icon, Carousel, Row, Col,
+  Icon, Row, Col,
   Card,
   Parallax,
   Slider,

@@ -74,6 +74,22 @@ module.exports = function (app) {
       .catch(err => res.json(err));
   });
 
+  //update and adding class to user
+  app.post("/api/addingClass/:id", (req, res) => {
+    console.log('user', req.params.id, req.body);
+    // db.user.findOneAndUpdate({
+    //     _id: req.params.id
+    //   }, {
+    //     $push: {
+    //       classesTaking: req.body
+    //     }
+    //   })
+    //   .then(userData = res.json(userData))
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
+  });
+
   //delete user
   app.get("api/user/:id", (req, res) => {
     db.User.remove({

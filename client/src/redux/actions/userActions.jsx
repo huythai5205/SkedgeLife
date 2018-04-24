@@ -1,8 +1,16 @@
-import { SET_CURRENT_USER } from './actionTypes';
+import { CURRENT_USER } from './actionTypes';
+import setAuthorization from '../../utils/setAuthorization';
 
 export function setCurrentUser(user) {
   return {
-    type: SET_CURRENT_USER,
+    type: CURRENT_USER,
     user
   };
 }
+
+export function logout() {
+  localStorage.removeItem('userToken');
+  setAuthorization(false);
+  setCurrentUser({});
+}
+

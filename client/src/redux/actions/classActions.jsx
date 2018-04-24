@@ -1,8 +1,8 @@
-import { SET_CLASS_LIST } from './actionTypes';
+import { SELECTED_CLASS } from './actionTypes';
 
-export function setCurrentUser(classes) {
+export function setSelectedClass(selected_class) {
     return {
-        type: SET_CLASS_LIST,
-        classes
+        type: SELECTED_CLASS,
+        selected_class
     };
 }
