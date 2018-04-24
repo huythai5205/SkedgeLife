@@ -1,5 +1,19 @@
 # SkedgeLife
 
+##Technologies Used:
+
+###Front-end:
+* ReactJs
+* materializeCSS
+
+###Back-end:
+* NodsJs
+* ExpressJs
+* mongo
+* mongoose
+
+
+###Intallation:
 
 run 'npm install'
 
@@ -9,4 +23,4 @@ npm install
 
 cd ..
 
-run 'npm start'
+run 'npm run start'
