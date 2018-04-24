@@ -7,7 +7,7 @@ import "./App.css";
 import Header from "./components/header/header";
 import FlashMessageList from "./components/flashMessageList/flashMessageList";
 import Footer from "./components/footer/footer";
-import CreateUserPage from "./components/createUserForm/createUserPage";
+import CreateUserForm from "./components/createUserForm/createUserForm";
 import CreateClassForm from "./components/createClassForm/createClassForm";
 import LoginForm from "./components/loginForm/loginForm";
 //pages
@@ -25,12 +25,12 @@ class App extends Component {
           <FlashMessageList />
           <Switch>
             <Route exact path="/" component={HomePage} />
+            <Route exact path="/signUp" component={CreateUserForm} />
+            <Route exact path="/login" component={LoginForm} />
+            <Route exact path="/createClass" component={CreateClassForm} />
             <Route exact path="/dashboardPage" component={DashboardPage} />
             <Route exact path="/profilePage" component={ProfilePage} />
           </Switch>
-          <LoginForm />
-          <CreateUserPage />
-          <CreateClassForm />
           <Footer />
         </div>
       </Router>

@@ -38,6 +38,7 @@ mongoose.connect(mongoDB_URI, err => {
     console.log(err);
   } else {
     require('./controllers/usersController.js')(app);
+    require('./controllers/classesController.js')(app);
 
     app.listen(PORT, err => {
       err ? console.log(err) : console.log("App running on port " + PORT + "!")

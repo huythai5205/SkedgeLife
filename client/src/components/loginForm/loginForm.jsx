@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import axios from 'axios';
-import setAuthorizationToken from '../../utils/setAuthorizationToken';
+import setAuthorization from '../../utils/setAuthorization';
 // import setCurrentUser from '../../redux/actions/setCurrentUser';
 import './loginForm.css';
 
@@ -44,16 +44,14 @@ class LoginForm extends Component {
             axios.post('./api/login/', { email: this.state.email, password: this.state.password }).then(user => {
 
                 const token = user.data;
+                setAuthorization(token);
                 localStorage.setItem('userToken', token);
-                setAuthorizationToken(token);
                 const currentUser = jwt.decode(token);
-                console.log(currentUser);
                 this.props.setCurrentUser(currentUser);
                 this.props.addFlashMessage({
                     type: 'success',
                     text: 'You have logged in'
                 });
-                // setCurrentUser(jwt.decode(token));
                 this.context.router.history.push('/profilePage');
 
             }).catch(error => {

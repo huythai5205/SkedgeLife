@@ -1,30 +1,37 @@
 const db = require('../models');
 
 module.exports = function (app) {
-  //create a user
-  app.post('/api/user', (req, res) => {
-    db.User.create(req.body.user)
-      .then(data => res.json(data))
+  //create a class
+  app.post('/api/class', (req, res) => {
+    console.log(req.body);
+    db.Class.create(req.body)
+      .then(classData => {
+        res.json(classData)
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(422).json(err)
+      });
+  });
+  //get all classes
+  app.get('/api/classes', (req, res) => {
+    db.Class.find({}).then(classesData => res.json(classesData))
       .catch(err => res.status(422).json(err));
   });
-  //get all users
-  app.get('/api/users', (req, res) => {
-    db.User.find({}).then(data => res.json(data))
-      .catch(err => res.status(422).json(err));
-  });
-  //get one user
-  app.get('/api/user/:id', (req, res) => {
-    db.User.findOne({
+  //get one class
+  app.get('/api/class/:id', (req, res) => {
+    db.Class.findOne({
         _id: req.params.id
       }).populate('activity')
-      .then(data => res.status(422).json(data));
+      .then(classData => res.status(422).json(classData))
+      .catch(err => res.json(422).json(err));
   });
-  //delete user
-  app.get('api/user/:id', (req, res) => {
-    db.User.remove({
+  //delete class
+  app.get('api/class/:id', (req, res) => {
+    db.Class.remove({
         _id: req.params.id
       })
-      .then(data => res.json(data))
+      .then(dataData => res.json(dataData))
       .catch(err => res.status(422).json(err));
   });
 }
