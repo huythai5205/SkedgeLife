@@ -13,7 +13,9 @@ export default class UserParallax extends Component {
       <div className="userParallax">
         <Col s={12}>
           <div className="parallax-container">
-            <Parallax imageSrc={userParallaxImage} />
+            <Parallax imageSrc={userParallaxImage}>
+              <p>HEre is the text overlay</p>
+            </Parallax>
           </div>
         </Col>
       </div>
