@@ -1,0 +1,20 @@
+.calendar-sort {
+  color: #a4a4a4;
+  float: left;
+  font-size: 22px;
+  padding: 10px;
+  vertical-align: bottom;
+}
+
+.icon-left {
+  vertical-align: bottom;
+  font-size: 30px;
+  color: #000;
+}
+
+/* .calender-sort-title {
+  float: left;
+  font-size: 22px;
+  padding: 10px;
+  vertical-align: bottom;
+} */
