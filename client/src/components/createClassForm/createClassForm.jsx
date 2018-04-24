@@ -8,17 +8,29 @@ class CreateClassForm extends Component {
     super(props);
     this.state = {
       name: '',
-      location: '',
-      startTime: '',
-      endTime: '',
-      startDate: '',
-      endData: '',
+      location: '1',
+      startTime: '1',
+      endTime: '1',
+      startDate: '1',
+      endDate: '1',
       seatsAvailable: 0,
-      instructor: {}
+      instructor: ''
     }
 
     this.change = this.change.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentWillMount = () => {
+    const currentState = this.state;
+    this.setState({ ...currentState, instructor: this.props.currentUser.user.userData._id });
+  }
+
+  componentWillReceiveProps = (next) => {
+    if (next.currentUser) {
+      const currentState = this.state;
+      this.setState({ ...currentState, instructor: this.props.currentUser.user.userData._id });
+    }
   }
 
   change = event => {
@@ -27,21 +39,17 @@ class CreateClassForm extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    this.setState(...this.state, { instructor: this.props.currentUser });
-    // this.props.createUserRequest(this.state);
-    console.log(this.state.instructor);
-    console.log(this.state);
-    // axios.post('/api/class', this.state).then(classData => {
-    //   console.log(classData);
-    //   // const userToken = token.data;
-    //   // <Redirect to="/dashboard" />;
-    // }).catch(err => {
-    //   console.log(err);
-    // });
+    const currentState = this.state;
+    axios.post('/api/class', currentState).then(classData => {
+      console.log(classData);
+      // const userToken = token.data;
+      // <Redirect to="/dashboard" />;
+    }).catch(err => {
+      console.log(err);
+    });
   }
 
   render() {
-    console.log(this.props.currentUser);
     return (
       <div className="createClassForm">
         <div className="row">

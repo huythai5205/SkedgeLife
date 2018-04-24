@@ -3,9 +3,15 @@ const db = require('../models');
 module.exports = function (app) {
   //create a class
   app.post('/api/class', (req, res) => {
+    console.log(req.body);
     db.Class.create(req.body)
-      .then(classData => res.json(classData))
-      .catch(err => res.status(422).json(err));
+      .then(classData => {
+        res.json(classData)
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(422).json(err)
+      });
   });
   //get all classes
   app.get('/api/classes', (req, res) => {
