@@ -8,7 +8,8 @@ import {
   Card,
   Parallax,
   Slider,
-  Slide
+  Slide,
+  Button
 } from "react-materialize";
 
 export default class HomePage extends Component {
