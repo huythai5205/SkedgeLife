@@ -14,6 +14,7 @@ class ProfilePage extends Component {
     }
 
     onSubmit = event => {
+        event.preventDefault();
         this.context.router.history.push('/createClass');
     }
 

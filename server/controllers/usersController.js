@@ -31,7 +31,11 @@ module.exports = function (app) {
         }, config.default.jwtSecret, (err, token) => {
           res.json(token);
         });
-      }).catch(err => res.status(422).json(err));
+      }).catch(err => res.status(422).json({
+        errors: {
+          form: 'User already exist'
+        }
+      }));
   });
 
   //get all users
@@ -46,8 +50,6 @@ module.exports = function (app) {
     db.User.findOne({
         email: req.body.email
       })
-      .populate("classesTeaching")
-      .populate("classTaking")
       .then(userData => {
         if (userData) {
           if (decryptPassword(userData.password) === req.body.password) {
@@ -72,6 +74,22 @@ module.exports = function (app) {
         }
       })
       .catch(err => res.json(err));
+  });
+
+  //update and adding class to user
+  app.post("/api/addingClass/:id", (req, res) => {
+    console.log('user', req.params.id, req.body);
+    // db.user.findOneAndUpdate({
+    //     _id: req.params.id
+    //   }, {
+    //     $push: {
+    //       classesTaking: req.body
+    //     }
+    //   })
+    //   .then(userData = res.json(userData))
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
   });
 
   //delete user
