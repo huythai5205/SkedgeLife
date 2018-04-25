@@ -1,0 +1,31 @@
+.left-sidebar {
+  background-color: #b2dfdb;
+  margin-top: 25px;
+  padding: 5px 20px;
+  border-radius: 10px;
+}
+.calendar-sort {
+  color: #a4a4a4;
+  float: left;
+  font-size: 20px;
+  padding: 30px 6px;
+  vertical-align: bottom;
+}
+
+.icon-left {
+  vertical-align: bottom;
+  font-size: 30px;
+  color: #000;
+}
+
+/* .calender-sort-title {
+  float: left;
+  font-size: 22px;
+  padding: 10px;
+  vertical-align: bottom;
+} */
+
+.dashboard-top-button {
+  float: right;
+  margin: 25px 10px;
+}
