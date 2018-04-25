@@ -6,15 +6,7 @@ import Header from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 
 import {
-<<<<<<< HEAD
-  Button,
-  Icon,
-  Row,
-  Col,
-  CardPanel,
-=======
   Icon, Row, Col,
->>>>>>> adding-students-to-class
   Card,
   Parallax,
   Slider,
@@ -26,7 +18,6 @@ export default class HomePage extends Component {
   render() {
     return (
       <div className="home">
-        <Header />
         <Row>
           <Slider>
             <Slide

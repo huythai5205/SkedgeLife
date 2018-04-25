@@ -18,10 +18,10 @@ class Header extends Component {
     const { isAuthenticated } = this.props.currentUser;
 
     const userLinks = (<div>
-      <Link to="/dashboard" className="header-link">
+      <Link to="/dashboardPage" className="header-link">
         dashboard
         </Link>
-      <Link to="/profile" className="header-link">
+      <Link to="/profilePage" className="header-link">
         profile
         </Link>
       <a onClick={this.logout.bind(this)}>Logout</a>
