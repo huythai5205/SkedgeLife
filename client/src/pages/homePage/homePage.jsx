@@ -2,9 +2,15 @@ import React, { Component } from "react";
 import "./homePage.css";
 
 //components:
-// import LandingPageCarousel from "../../components/landingPageCarousel/landingPageCarousel";
+import Header from "../../components/header/header";
+import Footer from "../../components/footer/footer";
+
 import {
-  Icon, Carousel, Row, Col,
+  Button,
+  Icon,
+  Row,
+  Col,
+  CardPanel,
   Card,
   Parallax,
   Slider,
@@ -15,7 +21,8 @@ import {
 export default class HomePage extends Component {
   render() {
     return (
-      <div className="homePage">
+      <div className="home">
+        <Header />
         <Row>
           <Slider>
             <Slide
@@ -104,6 +111,7 @@ export default class HomePage extends Component {
             while scrolling.
           </p>
         </Row>
+        <Footer />
       </div>
     );
   }
