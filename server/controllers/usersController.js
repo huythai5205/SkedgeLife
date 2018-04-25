@@ -31,7 +31,11 @@ module.exports = function (app) {
         }, config.default.jwtSecret, (err, token) => {
           res.json(token);
         });
-      }).catch(err => res.status(422).json(err));
+      }).catch(err => res.status(422).json({
+        errors: {
+          form: 'User already exist'
+        }
+      }));
   });
 
   //get all users
@@ -46,8 +50,6 @@ module.exports = function (app) {
     db.User.findOne({
         email: req.body.email
       })
-      .populate("classesTeaching")
-      .populate("classTaking")
       .then(userData => {
         if (userData) {
           if (decryptPassword(userData.password) === req.body.password) {
