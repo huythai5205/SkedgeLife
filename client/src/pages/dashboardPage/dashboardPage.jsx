@@ -4,9 +4,6 @@ import PropTypes from "prop-types";
 
 import "./dashboardPage.css";
 
-//images
-import calImg from "./images/googleCalimage.png";
-import calImgSm from "./images/googleCalMonth.png";
 import {
   Button,
   Icon,
@@ -21,8 +18,15 @@ import {
   Collection,
   CollectionItem,
   Badge,
-  Chip
+  Table
 } from "react-materialize";
+
+//components
+import CreateClassForm from "../../components/createClassForm/createClassForm";
+
+//images
+import calImg from "./images/googleCalimage.png";
+import calImgSm from "./images/googleCalMonth.png";
 
 export default class DashboardPage extends Component {
   render() {
@@ -31,32 +35,59 @@ export default class DashboardPage extends Component {
         <Row>
           <Col s={12}>
             <Col s={3}>
-              <h4>My Schedule</h4>
-              <img src={calImgSm} />
-              <Collection header="My Classes">
-                <CollectionItem href="#" active>
-                  Classes Scheduled
-                </CollectionItem>
-                <CollectionItem href="#">Classes Taking</CollectionItem>
-                <CollectionItem href="#">Following</CollectionItem>
-                <CollectionItem href="#">Previous Classes</CollectionItem>
-                <CollectionItem href="#">Students</CollectionItem>
-                <CollectionItem href="#">
-                  Payments<Badge newIcon>3</Badge>
-                </CollectionItem>
-              </Collection>
+              <div className="left-sidebar">
+                <h4>My Schedule</h4>
+                <img className="dropShadow" src={calImgSm} />
+                <Collection className="dropShadow" header="My Classes">
+                  <CollectionItem href="#" active>
+                    Classes Scheduled
+                  </CollectionItem>
+                  <CollectionItem href="#">Classes Taking</CollectionItem>
+                  <CollectionItem href="#">Following</CollectionItem>
+                  <CollectionItem href="#">Previous Classes</CollectionItem>
+                  <CollectionItem href="#">Students</CollectionItem>
+                  <Modal
+                    header="Payment History"
+                    bottomSheet
+                    className="paymentModal"
+                    trigger={
+                      <CollectionItem href="#" data-target=".paymentModal">
+                        Payments<Badge newIcon>3</Badge>
+                      </CollectionItem>
+                    }
+                  >
+                    <Table>
+                      <thead>
+                        <tr>
+                          <th data-field="id">Name</th>
+                          <th data-field="name">Class</th>
+                          <th data-field="price">Amount</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr>
+                          <td>Erique</td>
+                          <td>Haircut</td>
+                          <td>$60.00</td>
+                        </tr>
+                        <tr>
+                          <td>Danathan</td>
+                          <td>Guitar lesson</td>
+                          <td>$45.00</td>
+                        </tr>
+                        <tr>
+                          <td>Mikhal</td>
+                          <td>Yurt consultation</td>
+                          <td>$75.00</td>
+                        </tr>
+                      </tbody>
+                    </Table>
+                  </Modal>
+                </Collection>
+              </div>
             </Col>
-            {/* <Modal header="Modal Header" trigger={<Button>MODAL</Button>}>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum
-              </p>
-            </Modal> */}
+
             <Col s={9}>
               <ul>
                 <li className="calendar-sort">
@@ -69,12 +100,31 @@ export default class DashboardPage extends Component {
                 <li className="calendar-sort">Weekly</li>
                 <li className="calendar-sort">Monthly</li>
                 <li className="calendar-sort">Yearly</li>
+                <li className="dashboard-top-button">
+                  <Modal
+                    header="Add a class"
+                    trigger={
+                      <Button>
+                        <Icon left>add_box</Icon>Add a class
+                      </Button>
+                    }
+                  >
+                    <CreateClassForm />
+                  </Modal>
+                </li>
+                <li className="dashboard-top-button">
+                  <Modal
+                    header="Profile"
+                    trigger={
+                      <Button>
+                        <Icon left>account_box</Icon>Profile
+                      </Button>
+                    }
+                  />
+                </li>
               </ul>
-              <Button>
-                <Icon left>cast_connected</Icon>Add a class
-              </Button>
 
-              <img src={calImg} />
+              <img src={calImg} className="dropShadow" />
             </Col>
           </Col>
         </Row>
