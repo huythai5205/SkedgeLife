@@ -11,6 +11,6 @@ export function setCurrentUser(user) {
 export function logout() {
   localStorage.removeItem('userToken');
   setAuthorization(false);
-  setCurrentUser({});
+  return setCurrentUser({});
 }
 
