@@ -76,22 +76,6 @@ module.exports = function (app) {
       .catch(err => res.json(err));
   });
 
-  //update and adding class to user
-  app.post("/api/addingClass/:id", (req, res) => {
-    console.log('user', req.params.id, req.body);
-    // db.user.findOneAndUpdate({
-    //     _id: req.params.id
-    //   }, {
-    //     $push: {
-    //       classesTaking: req.body
-    //     }
-    //   })
-    //   .then(userData = res.json(userData))
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
-  });
-
   //delete user
   app.get("api/user/:id", (req, res) => {
     db.User.remove({
@@ -101,26 +85,4 @@ module.exports = function (app) {
       .catch(err => res.status(422).json(err));
   });
 
-  // Route for saving/updating an Article's associated Note
-  app.post("/user/:id", function (req, res) {
-    // Create a new note and pass the req.body to the entry
-    db.Note.create(req.body)
-      .then(function (dbNote) {
-        return db.Article.findOneAndUpdate({
-          _id: req.params.id
-        }, {
-          note: dbNote._id
-        }, {
-          new: true
-        });
-      })
-      .then(function (dbArticle) {
-        // If we were able to successfully update an Article, send it back to the client
-        res.json(dbArticle);
-      })
-      .catch(function (err) {
-        // If an error occurred, send it to the client
-        res.json(err);
-      });
-  });
 };

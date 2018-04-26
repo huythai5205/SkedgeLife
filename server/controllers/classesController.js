@@ -18,6 +18,37 @@ const decryptPassword = (password) => {
 }
 
 module.exports = function (app) {
+
+  //update and adding class to user
+  app.post("/api/addingClass/:userId", (req, res) => {
+    console.log('user', req.params.userId, req.body);
+    db.User.findOneAndUpdate({
+        _id: req.params.userId
+      }, {
+        $push: {
+          classesTaking: req.body.classId
+        }
+      })
+      .then(userData => {
+        return db.Class.findOneAndUpdate({
+          _id: req.body.classId
+        }, {
+          $push: {
+            students: req.params.userId
+          }
+        })
+        userData.password = decryptPassword(userData.password);
+        jwt.sign({
+          userData
+        }, config.default.jwtSecret, (err, token) => {
+          res.json(token);
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  });
+
   //create a class with intructorID
   app.post('/api/class/:instructorID', (req, res) => {
     db.Class.create(req.body)
@@ -56,7 +87,7 @@ module.exports = function (app) {
   app.get('/api/class/:id', (req, res) => {
     db.Class.findOne({
         _id: req.params.id
-      }).populate('activity')
+      })
       .then(classData => res.status(422).json(classData))
       .catch(err => res.json(422).json(err));
   });
@@ -71,6 +102,7 @@ module.exports = function (app) {
       }).then(classesData => res.json(classesData))
       .catch(err => console.log(err));
   });
+
   //delete class
   app.get('api/class/:id', (req, res) => {
     db.Class.remove({
