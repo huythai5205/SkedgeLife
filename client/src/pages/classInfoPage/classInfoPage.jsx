@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 import axios from 'axios';
 
-
 class ClassInfoPage extends Component {
 
     addClass = event => {
