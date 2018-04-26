@@ -1,23 +1,24 @@
-import React, { Component } from 'react';
-import './classesTakingComponent.css';
+import React, { Component } from "react";
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import axios from 'axios';
-import { setSelectedClass } from '../../../redux/actions/classActions';
+import { setSelectedClass } from '../../redux/actions/classActions';
 
-class ClassTakingComponent extends Component {
+
+class AvailableClassesPage extends Component {
+
     constructor(props) {
-        super(props)
+        super(props);
 
         this.state = {
             classes: []
         }
     }
 
-    onclick = event => {
-        axios.post('/api/classes', this.props.aClassesTaking).then(classesData => {
+    componentDidMount() {
+        axios.get('./api/classes').then(classesData => {
             this.setState({ ...this.state, classes: classesData.data });
-        }).catch(err => { console.log(err) });
+        }).catch(err => console.log(err));
     }
 
     selectClass = event => {
@@ -28,7 +29,7 @@ class ClassTakingComponent extends Component {
 
     render() {
         return (
-            <div className="classesTeachingComponent">
+            <div className="availableClassesPage" >
                 <table>
                     <thead>
                         <tr>
@@ -56,13 +57,17 @@ class ClassTakingComponent extends Component {
                         }
                     </tbody>
                 </table>
+
             </div>
         );
+
     }
+
+
 }
 
-ClassTakingComponent.contextTypes = {
+AvailableClassesPage.contextTypes = {
     router: PropTypes.object.isRequired
 }
 
-export default connect(null, { setSelectedClass })(ClassTakingComponent);
+export default connect(null, { setSelectedClass })(AvailableClassesPage);

@@ -29,9 +29,9 @@ class LoginForm extends Component {
     onSubmit = event => {
         event.preventDefault();
 
-        axios.post('./api/login/', { email: this.state.email, password: this.state.password }).then(user => {
+        axios.post('./api/login/', { email: this.state.email, password: this.state.password }).then(userData => {
 
-            const userToken = user.data;
+            const userToken = userData.data;
             setAuthorization(userToken);
             localStorage.setItem('userToken', userToken);
             const currentUser = jwt.decode(userToken);

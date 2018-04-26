@@ -43,7 +43,7 @@ class SignUpUserForm extends Component {
             this.props.setCurrentUser(currentUser);
             this.props.addFlashMessage({
                 type: 'success',
-                text: 'You have sign up.'
+                text: 'You successfully have signed up.'
             });
             this.context.router.history.push('/dashboardPage');
 
