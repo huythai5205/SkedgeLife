@@ -4,14 +4,19 @@ import "./homePage.css";
 //components:
 import Header from "../../components/header/header";
 import Footer from "../../components/footer/footer";
+import LoginForm from "../../components/loginForm/loginForm";
+import SignUpUserForm from "../../components/signUpUserForm/signUpUserForm";
 
 import {
-  Icon, Row, Col,
+  Icon,
+  Row,
+  Col,
   Card,
   Parallax,
   Slider,
   Slide,
-  Button
+  Button,
+  Modal
 } from "react-materialize";
 
 export default class HomePage extends Component {
@@ -49,11 +54,12 @@ export default class HomePage extends Component {
               className="teal lighten-4 black-text"
               title="Customize your Web Presence"
               actions={[
-                <a >
+                <a>
                   <Icon className="link-icon">devices</Icon>
                   View Templates
                 </a>
-              ]} >
+              ]}
+            >
               You could be a fitness instructor or massage therapist, a guitar
               teacher, a handyman… Anyone with a schedule and a service can use
               SkedgeLife to setup sessions both online and in person. Our
@@ -70,7 +76,8 @@ export default class HomePage extends Component {
                   <Icon className="link-icon">event_note</Icon>View Scheduling
                   Demo
                 </a>
-              ]} >
+              ]}
+            >
               If you have a skill or trade, why work for someone else? Setup
               your own business to take payments in person, online, or even on a
               monthly or subscription basis. You could work from anywhere! Keep
@@ -78,21 +85,29 @@ export default class HomePage extends Component {
             </Card>
           </Col>
           <Col m={4} s={12}>
-            <Card
-              className="teal lighten-4 black-text"
-              title="Sign up for Free!"
-              actions={[
-                <a >
-                  <Icon className="link-icon">edit</Icon>
-                  Sign Up for Free
-                </a>
-              ]} >
-              Anyone can sign up for a free profile page. Whether you want to
-              share your bio and schedule, or locate a class or service and sign
-              up and pay directly. Students can follow their favorites, get
-              notifications on your latest news and schedule updates, and even
-              leave reviews!
-            </Card>
+            <Modal
+              header="Sign Up"
+              trigger={
+                <Card
+                  className="teal lighten-4 black-text"
+                  title="Sign up for Free!"
+                  actions={[
+                    <a>
+                      <Icon className="link-icon">edit</Icon>
+                      Sign Up for Free
+                    </a>
+                  ]}
+                >
+                  Anyone can sign up for a free profile page. Whether you want
+                  to share your bio and schedule, or locate a class or service
+                  and sign up and pay directly. Students can follow their
+                  favorites, get notifications on your latest news and schedule
+                  updates, and even leave reviews!
+                </Card>
+              }
+            >
+              <SignUpUserForm />
+            </Modal>
           </Col>
         </Row>
         <Row>
@@ -106,7 +121,6 @@ export default class HomePage extends Component {
             while scrolling.
           </p>
         </Row>
-        <Footer />
       </div>
     );
   }
