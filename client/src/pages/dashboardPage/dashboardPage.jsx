@@ -3,6 +3,7 @@ import './dashboardPage.css';
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import ClassesTeachingComponent from './classesTeachingComponent/classesTeachingComponent';
+import ClassesTakingComponent from './classesTakingComponent/classesTakingComponent';
 
 
 import {
@@ -44,9 +45,13 @@ class DashboardPage extends Component {
       <div className="dashboardPage">
         <p>name {firstName}</p>
         <p>email {email}</p>
-        {/* <ClassesTeachingComponent aClassesTeaching={classesTeaching} /> */}
+        <p>teaching: </p>
+        <ClassesTeachingComponent aClassesTeaching={classesTeaching} />
+        <p>taking:</p>
+        <ClassesTakingComponent aClassesTaking={classesTaking} />
 
-        <button onClick={this.onSubmit.bind(this)}>create class</button>
+
+        < button onClick={this.onSubmit.bind(this)} > create class</button>
         <Row>
           <Col s={12}>
             <Col s={3}>
