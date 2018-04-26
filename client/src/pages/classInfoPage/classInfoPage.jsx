@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 import axios from 'axios';
 
-
 class ClassInfoPage extends Component {
 
     addClass = event => {
@@ -15,7 +14,7 @@ class ClassInfoPage extends Component {
 
     render() {
         const { name, location, startTime, endTime, instructor, students } = this.props.selectedClass.selected_class;
-        console.log(this.props.selectedClass.selected_class);
+        console.log(this.props.selectedClass);
         return (
 
             <div className="class-info">
