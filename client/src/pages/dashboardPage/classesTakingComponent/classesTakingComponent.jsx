@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import './classesTakingComponent.css';
+import { connect } from 'react-redux';
+import PropTypes from "prop-types";
 import axios from 'axios';
+import { setSelectedClass } from '../../../redux/actions/classActions';
 
-export default class classTaking extends Component {
+class ClassTakingComponent extends Component {
     constructor(props) {
         super(props)
 
@@ -11,32 +14,55 @@ export default class classTaking extends Component {
         }
     }
 
-    // componentWillMount = () => {
-    //     const currentState = this.state;
-
-    //   }
-
-    //   componentWillReceiveProps = (next) => {
-    //     if (next.currentUser) {
-    //      axios.post('/api/classes', this.state).
-
-    //     }
-    //   }
-
     onclick = event => {
         axios.post('/api/classes', this.props.aClassesTaking).then(classesData => {
-            const currentState = this.state;
-            this.setState({ ...currentState, classes: classesData.data });
+            this.setState({ ...this.state, classes: classesData.data });
         }).catch(err => { console.log(err) });
+    }
+
+    selectClass = event => {
+        event.preventDefault();
+        this.props.setSelectedClass(this.props.classData);
+        this.context.router.history.push('./classInfoPage');
     }
 
     render() {
         return (
             <div className="classesTeachingComponent">
-                <button onClick={this.onclick.bind(this)}>click</button>
-                <p>{JSON.stringify(this.state.classes)}</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Class Name:</th>
+                            <th>Time:</th>
+                            <th>Date:</th>
+                            <th>Seat Available:</th>
+                            <th>Location: </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {
+                            this.state.classes.map(classData => {
+                                return (
+                                    <tr onClick={this.selectClass.bind(this)}>
+                                        <td>{classData.name}</td>
+                                        <td>{classData.startTime}-{classData.endTime}</td>
+                                        <td>{classData.startDate}-{classData.endDate}</td>
+                                        <td>{classData.seatsAvailable}</td>
+                                        <td>{classData.Location}</td>
+                                    </tr>
+                                )
+                            })
+                        }
+                    </tbody>
+                </table>
             </div>
         );
     }
 }
 
+ClassTakingComponent.contextTypes = {
+    router: PropTypes.object.isRequired
+}
+
+export default connect(null, { setSelectedClass })(ClassTakingComponent);

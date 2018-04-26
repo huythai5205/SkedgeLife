@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import axios from 'axios';
+import { setSelectedClass } from '../../redux/actions/classActions';
 
 
 class AvailableClassesPage extends Component {
@@ -11,7 +11,7 @@ class AvailableClassesPage extends Component {
         super(props);
 
         this.state = {
-            classes: {}
+            classes: []
         }
     }
 
@@ -21,16 +21,47 @@ class AvailableClassesPage extends Component {
         }).catch(err => console.log(err));
     }
 
+    selectClass = event => {
+        event.preventDefault();
+        this.props.setSelectedClass(this.props.classData);
+        this.context.router.history.push('./classInfoPage');
+    }
+
     render() {
         return (
             <div className="availableClassesPage" >
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Class Name:</th>
+                            <th>Time:</th>
+                            <th>Date:</th>
+                            <th>Seat Available:</th>
+                            <th>Location: </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {
+                            this.state.classes.map(classData => {
+                                return (
+                                    <tr onClick={this.selectClass.bind(this)}>
+                                        <td>{classData.name}</td>
+                                        <td>{classData.startTime}-{classData.endTime}</td>
+                                        <td>{classData.startDate}-{classData.endDate}</td>
+                                        <td>{classData.seatsAvailable}</td>
+                                        <td>{classData.Location}</td>
+                                    </tr>
+                                )
+                            })
+                        }
+                    </tbody>
+                </table>
 
             </div>
         );
 
     }
-
-
 
 
 }
@@ -39,4 +70,4 @@ AvailableClassesPage.contextTypes = {
     router: PropTypes.object.isRequired
 }
 
-export default connect(null, )(AvailableClassesPage);
+export default connect(null, { setSelectedClass })(AvailableClassesPage);
