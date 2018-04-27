@@ -16,6 +16,7 @@ import DashboardPage from "./pages/dashboardPage/dashboardPage";
 import ProfilePage from "./pages/profilePage/profilePage";
 import ClassInfoPage from "./pages/classInfoPage/classInfoPage";
 import AvailableClassesPage from "./pages/availableClassesPage/availableClassesPage";
+import UserProfilePage from "./pages/userProfilePage/userProfilePage";
 
 
 class App extends Component {
@@ -34,6 +35,7 @@ class App extends Component {
             <Route exact path="/createClass" component={CreateClassForm} />
             <Route exact path="/classInfoPage" component={ClassInfoPage} />
             <Route exact path="/availableClassesPage" component={AvailableClassesPage} />
+            <Route exact path="/userProfilePage" component={UserProfilePage} />
           </Switch>
           <Footer />
         </div>
