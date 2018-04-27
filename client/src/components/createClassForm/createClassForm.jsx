@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { setCurrentUser } from '../../redux/actions/userActions';
-import { setSelectedClass } from '../../redux/actions/classActions';
 import { addFlashMessage } from '../../redux/actions/flashMessageActions';
 import jwt from 'jsonwebtoken';
 
@@ -64,7 +63,6 @@ class CreateClassForm extends Component {
   }
 
   render() {
-    const { errors } = this.state;
     return (
       <div className="createClassForm">
         <div className="row">

@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import "./homePage.css";
 
-//components:
-import Header from "../../components/header/header";
-import Footer from "../../components/footer/footer";
-
 import {
   Icon, Row, Col,
   Card,
@@ -106,7 +102,6 @@ export default class HomePage extends Component {
             while scrolling.
           </p>
         </Row>
-        <Footer />
       </div>
     );
   }

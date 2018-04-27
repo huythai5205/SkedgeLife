@@ -30,6 +30,7 @@ class ClassInfoPage extends Component {
     }
 
     render() {
+
         const { name, location, startTime, endTime, instructor, students } = this.props.selectedClass.selected_class;
         return (
 

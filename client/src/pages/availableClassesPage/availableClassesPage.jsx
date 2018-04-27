@@ -24,7 +24,8 @@ class AvailableClassesPage extends Component {
     selectClass = event => {
         event.preventDefault();
         this.props.setSelectedClass(this.props.classData);
-        this.context.router.history.push('./classInfoPage');
+        console.log(this.props.classData);
+        // this.context.router.history.push('./classInfoPage');
     }
 
     render() {
@@ -45,7 +46,7 @@ class AvailableClassesPage extends Component {
                         {
                             this.state.classes.map(classData => {
                                 return (
-                                    <tr onClick={this.selectClass.bind(this)}>
+                                    <tr key={classData._id} onClick={this.selectClass.bind(this)}>
                                         <td>{classData.name}</td>
                                         <td>{classData.startTime}-{classData.endTime}</td>
                                         <td>{classData.startDate}-{classData.endDate}</td>

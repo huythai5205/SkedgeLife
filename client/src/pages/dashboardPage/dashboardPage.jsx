@@ -52,7 +52,7 @@ class DashboardPage extends Component {
             <Col s={3}>
               <div className="left-sidebar">
                 <h4>My Schedule</h4>
-                <img className="dropShadow" src={calImgSm} />
+                <img className="dropShadow" src={calImgSm} alt="" />
                 <Collection className="dropShadow" header="My Classes">
                   <CollectionItem href="#" active>
                     Classes Scheduled
@@ -139,7 +139,7 @@ class DashboardPage extends Component {
                 </li>
               </ul>
 
-              <img src={calImg} className="dropShadow" />
+              <img src={calImg} className="dropShadow" alt="" />
             </Col>
           </Col>
         </Row>
