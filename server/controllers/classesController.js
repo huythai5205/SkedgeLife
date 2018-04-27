@@ -21,7 +21,6 @@ module.exports = function (app) {
 
   //update and adding class to user
   app.post("/api/addingClass/:userId", (req, res) => {
-    console.log('user', req.params.userId, req.body);
     db.User.findOneAndUpdate({
         _id: req.params.userId
       }, {
@@ -30,7 +29,7 @@ module.exports = function (app) {
         }
       })
       .then(userData => {
-        return db.Class.findOneAndUpdate({
+        db.Class.findOneAndUpdate({
           _id: req.body.classId
         }, {
           $push: {
@@ -38,7 +37,7 @@ module.exports = function (app) {
           }
         }, {
           new: true
-        })
+        });
         userData.password = decryptPassword(userData.password);
         jwt.sign({
           userData
@@ -96,7 +95,6 @@ module.exports = function (app) {
 
   //get a list of classes
   app.post('/api/classes', (req, res) => {
-    console.log(req.body);
     db.Class.find({
         _id: {
           $in: req.body

@@ -8,6 +8,7 @@ import { addFlashMessage } from '../../redux/actions/flashMessageActions';
 import jwt from 'jsonwebtoken';
 // import Autocomplete from 'react-google-autocomplete';
 
+
 class CreateClassForm extends Component {
   constructor(props) {
     super(props);
@@ -46,8 +47,9 @@ class CreateClassForm extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    axios.post('/api/class/' + this.props.currentUser.user.userData._id, this.state).then(user => {
-      const userToken = user.data;
+    axios.post('/api/class/' + this.props.currentUser.user.userData._id, this.state).then(userData => {
+      const userToken = userData.data;
+      localStorage.setItem('userToken', userToken);
       const currentUser = jwt.decode(userToken);
       this.props.setCurrentUser(currentUser);
       this.props.addFlashMessage({

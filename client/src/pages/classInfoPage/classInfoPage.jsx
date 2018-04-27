@@ -31,7 +31,7 @@ class ClassInfoPage extends Component {
     }
 
     render() {
-
+        //TODO: need to check if user already taking or teaching the class, try array1.includes('value')
         const { name, location, startTime, endTime, startDate, endDate, instructor, students } = this.props.selectedClass.selected_class;
 
         return (
