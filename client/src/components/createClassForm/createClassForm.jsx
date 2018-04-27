@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { setCurrentUser } from '../../redux/actions/userActions';
 import { addFlashMessage } from '../../redux/actions/flashMessageActions';
 import jwt from 'jsonwebtoken';
-
+import Autocomplete from 'react-google-autocomplete';
 
 class CreateClassForm extends Component {
   constructor(props) {
@@ -65,6 +65,14 @@ class CreateClassForm extends Component {
   render() {
     return (
       <div className="createClassForm">
+        <Autocomplete
+          style={{ width: '90%' }}
+          onPlaceSelected={(place) => {
+            console.log(place);
+          }}
+          types={['(regions)']}
+          componentRestrictions={{ country: "ru" }}
+        />
         <div className="row">
           <form className="col s12" onSubmit={this.onSubmit}>
             <div className="input-field col s6">

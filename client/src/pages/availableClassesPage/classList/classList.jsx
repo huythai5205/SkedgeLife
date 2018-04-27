@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setSelectedClass } from '../../../redux/actions/classActions';
 import PropTypes from "prop-types";
+import moment from 'moment';
 
 
 class ClassList extends Component {
@@ -13,10 +14,13 @@ class ClassList extends Component {
     }
 
     render() {
-        const { name, location, startTime, endTime, startDate, endDate } = this.props.classData;
+        const { name, location, startTime, endTime, startDate, endDate, seatsAvailable } = this.props.classData;
         return (
-            <div className="classList">
-                <a onClick={this.selectClass.bind(this)}>Name: {name} location: {location} Start Time: {startTime} End Time: {endTime} Start Date: {startDate} End Date: {endDate}</a>
+            <div className="classList row" onClick={this.selectClass.bind(this)}>
+                <div className="col s3">{name}</div>
+                <div className="col s3">{moment(startTime).format('h:mm a')} - {moment(endTime).format('h:mm a')}</div>
+                <div className="col s3"> {moment(startDate).format('MMMM Do YYYY')} - {moment(endDate).format('MMMM Do YYYY')}</div>
+                <div className="col s3">{seatsAvailable}</div>
             </div>
         );
     }

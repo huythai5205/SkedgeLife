@@ -7,6 +7,7 @@ import { addFlashMessage } from '../../redux/actions/flashMessageActions';
 import setAuthorization from '../../utils/setAuthorization';
 import { setCurrentUser } from '../../redux/actions/userActions';
 import jwt from 'jsonwebtoken';
+import moment from 'moment';
 
 class ClassInfoPage extends Component {
 
@@ -31,15 +32,16 @@ class ClassInfoPage extends Component {
 
     render() {
 
-        const { name, location, startTime, endTime, instructor, students } = this.props.selectedClass.selected_class;
+        const { name, location, startTime, endTime, startDate, endDate, instructor, students } = this.props.selectedClass.selected_class;
+
         return (
 
             <div className="class-info">
-                <p>name:  {name}</p>
-                <p>location:  {location}</p>
-                <p>start time:  {startTime}</p>
-                <p>end time  {endTime}</p>
-                <p>instructor: {instructor}</p>
+                <h3>class name:  {name}</h3>
+                <h4>location:  {location}</h4>
+                <h4>Time:  {moment(startTime).format('h:mm a')} - {moment(endTime).format('h:mm a')}</h4>
+                <h4>Date:  {moment(startDate).format('MMMM Do YYYY')} - {moment(endDate).format('MMMM Do YYYY')}</h4>
+                <h4>instructor: {instructor}</h4>
                 <p>students: {students}</p>
                 <button onClick={this.addClass.bind(this)}>Add Class</button>
             </div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './classesTeachingComponent.css';
-import ClassList from '../classList/classList';
 import axios from 'axios';
+import moment from 'moment';
 
 export default class ClassesTeachingComponent extends Component {
     constructor(props) {
@@ -13,7 +13,6 @@ export default class ClassesTeachingComponent extends Component {
     }
 
     onclick(event) {
-
         axios.post('/api/classes', this.props.aClassesTeaching).then(classesData => {
             const currentState = this.state;
             this.setState({ ...currentState, classes: classesData.data });
@@ -24,9 +23,33 @@ export default class ClassesTeachingComponent extends Component {
         return (
             <div className="classesTeachingComponent">
                 <button onClick={this.onclick.bind(this)}>click</button>
-                {this.state.classes.map(classData => {
-                    return (<ClassList classData={classData} />)
-                })}
+
+                <table className="centered">
+                    <thead>
+                        <tr>
+                            <th>Class Name:</th>
+                            <th>Location:</th>
+                            <th>Time:</th>
+                            <th>Date:</th>
+                            <th>Seats Available</th>
+                        </tr>
+                    </thead>
+                    {this.state.classes.map(classData => {
+                        return (
+                            <tr>
+                                <td>{classData.name}</td>
+                                <td>{classData.location}</td>
+                                <td>{moment(classData.startTime).format('h:mm a')} - {moment(classData.endTime).format('h:mm a')}</td>
+                                <td>{moment(classData.startDate).format('MMMM Do YYYY')} - {moment(classData.endDate).format('MMMM Do YYYY')}</td>
+                                <td>{classData.seatsAvailable}</td>
+                            </tr>
+                        )
+                    })}
+
+                    <tbody>
+                        <tr></tr>
+                    </tbody>
+                </table>
             </div>
         );
     }
