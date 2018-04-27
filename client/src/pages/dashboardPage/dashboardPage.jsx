@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import ClassesTeachingComponent from './classesTeachingComponent/classesTeachingComponent';
 import ClassesTakingComponent from './classesTakingComponent/classesTakingComponent';
+import ProfileInfo from './profileInfo/profileInfo';
 
 
 import {
@@ -38,15 +39,11 @@ class DashboardPage extends Component {
 
     return (
       <div className="dashboardPage">
-        <p>name {firstName}</p>
-        <p>email {email}</p>
-        <p>teaching: </p>
-        <ClassesTeachingComponent aClassesTeaching={classesTeaching} />
-        <p>taking:</p>
-        <ClassesTakingComponent aClassesTaking={classesTaking} />
 
 
-        < button onClick={this.onSubmit.bind(this)} > create class</button>
+
+
+        {/* < button onClick={this.onSubmit.bind(this)} > create class</button> */}
         <Row>
           <Col s={12}>
             <Col s={3}>
@@ -54,10 +51,31 @@ class DashboardPage extends Component {
                 <h4>My Schedule</h4>
                 <img className="dropShadow" src={calImgSm} />
                 <Collection className="dropShadow" header="My Classes">
-                  <CollectionItem href="#" active>
-                    Classes Scheduled
-                  </CollectionItem>
-                  <CollectionItem href="#">Classes Taking</CollectionItem>
+                  <Modal
+                    header="Classes Scheduled"
+                    bottomSheet
+                    className="classesScheduledModal"
+                    trigger={
+                      <CollectionItem href="#" data-target=".classesScheduledModal" active>
+                        Classes Scheduled
+                       </CollectionItem>
+                    }
+                  >
+                    <ClassesTakingComponent aClassesTaking={classesTaking} />
+                  </Modal>
+
+                  <Modal
+                    header="Classes Taking"
+                    bottomSheet
+                    className="classesTakingModal"
+                    trigger={
+                      <CollectionItem href="#" data-target=".classesTakingModal">
+                        Classes Taking
+                       </CollectionItem>
+                    }
+                  >
+                    <ClassesTakingComponent aClassesTeaching={classesTeaching} />
+                  </Modal>
                   <CollectionItem href="#">Following</CollectionItem>
                   <CollectionItem href="#">Previous Classes</CollectionItem>
                   <CollectionItem href="#">Students</CollectionItem>
@@ -129,13 +147,18 @@ class DashboardPage extends Component {
                 </li>
                 <li className="dashboard-top-button">
                   <Modal
-                    header="Profile"
+                    header="Profile Information"
                     trigger={
                       <Button>
                         <Icon left>account_box</Icon>Profile
                       </Button>
                     }
-                  />
+                  >
+                    Currently Logged in as:
+                  <p>name: {firstName}</p>
+                    <p>email: {email}</p>
+                    {/* <ProfileInfo /> */}
+                  </Modal>
                 </li>
               </ul>
 

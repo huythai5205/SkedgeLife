@@ -35,7 +35,7 @@ class ClassTakingComponent extends Component {
                             <th>Class Name:</th>
                             <th>Time:</th>
                             <th>Date:</th>
-                            <th>Seat Available:</th>
+                            <th>Seats Available:</th>
                             <th>Location: </th>
                         </tr>
                     </thead>
