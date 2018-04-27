@@ -2,3 +2,14 @@
   padding: 0px 10px;
   vertical-align: bottom;
 }
+
+.parallax-container {
+  height: 350px;
+}
+
+.parallax-content {
+  color: white;
+  z-index: 10;
+  position: absolute;
+  margin: 5% 40% 5% 40%;
+}

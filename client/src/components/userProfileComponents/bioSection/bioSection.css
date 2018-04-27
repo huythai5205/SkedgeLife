@@ -1,3 +1,7 @@
+.bioSection {
+  margin-bottom: 40px;
+}
+
 .bioTitle {
   color: #5f04b4;
   font-size: 40px;
@@ -14,8 +18,8 @@
   float: left;
   background-color: #ffbbec;
   height: 600px;
-  margin: -15px 70px 0px 20px;
-  padding: 40px;
+  margin: 0px 70px 0px 20px;
+  padding: 30px;
 }
 
 .bioHr {

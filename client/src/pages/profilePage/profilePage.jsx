@@ -22,7 +22,7 @@ class ProfilePage extends Component {
         return (
             <div className="profile">
                 <p>{JSON.stringify(this.props.currentUser)}</p>
-                <button onClick={this.onSubmit}>creat class</button>
+                <button onClick={this.onSubmit}>create class</button>
             </div>
         );
     }

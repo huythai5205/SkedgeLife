@@ -80,7 +80,7 @@ class SignUpUserForm extends Component {
                             <label htmlFor="socialURL">Social Media URL</label>
                             <input id="socialURL" type="text" onChange={this.change} />
                         </div>
-                        <button type='submit' name='btn_login' className='col s12 btn btn-large waves-effect indigo'>Sign Up</button>
+                        <button type='submit' name='btn_login' className='col s12 btn btn-large waves-effect teal'>Sign Up</button>
                     </form>
                 </div>
             </div>
