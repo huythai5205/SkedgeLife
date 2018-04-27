@@ -1,6 +1,18 @@
 .userParallax {
+  margin-bottom: 60px;
 }
 
 .parallax-container {
   height: 300px;
+}
+
+.parallax-container {
+  height: 350px;
+}
+
+.parallax-content {
+  color: white;
+  z-index: 10;
+  position: absolute;
+  margin: 5% 30% 5% 30%;
 }

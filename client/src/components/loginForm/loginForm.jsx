@@ -53,7 +53,7 @@ class LoginForm extends Component {
         const { errors } = this.state;
         return (
             <div className="login-form">
-                <h5 className="indigo-text">Please, login into your account</h5>
+                <h5 className>Login to your account</h5>
                 <div className="error-message">{errors.form}</div>
                 <form className="col s12" onSubmit={this.onSubmit}>
                     <div className='row'>
@@ -69,7 +69,7 @@ class LoginForm extends Component {
                             <a className='pink-text' href='#!'><b>Forgot Password?</b></a>
                         </label>
                         <br />
-                        <button type='submit' name='btn_login' className='col s12 btn btn-large waves-effect indigo'>Login</button>
+                        <button type='submit' name='btn_login' className='col s12 btn btn-large waves-effect teal'>Login</button>
                     </div>
                 </form>
                 <a href="#!">Create account</a>

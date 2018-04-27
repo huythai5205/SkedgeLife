@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import axios from 'axios';
 import { setSelectedClass } from '../../redux/actions/classActions';
+import ClassList from './classList/classList';
+
 
 
 class AvailableClassesPage extends Component {
@@ -23,41 +25,32 @@ class AvailableClassesPage extends Component {
 
     selectClass = event => {
         event.preventDefault();
-        this.props.setSelectedClass(this.props.classData);
-        this.context.router.history.push('./classInfoPage');
+        // this.props.setSelectedClass(this.props.classData);
+        // this.context.router.history.push('./classInfoPage');
+        console.log(event.target);
     }
 
     render() {
         return (
             <div className="availableClassesPage" >
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Class Name:</th>
-                            <th>Time:</th>
-                            <th>Date:</th>
-                            <th>Seat Available:</th>
-                            <th>Location: </th>
-                        </tr>
-                    </thead>
 
-                    <tbody>
-                        {
+                <div className="row">
+                    <div className="col s3">Class Name:</div>
+                    <div className="col s3">Time:</div>
+                    <div className="col s3">Date:</div>
+                    <div className="col s3" th>Seat Available:</div>
+                </div>
+
+                {
+                    this.state.classes.map(classData => {
+                        return (
+
                             this.state.classes.map(classData => {
-                                return (
-                                    <tr onClick={this.selectClass.bind(this)}>
-                                        <td>{classData.name}</td>
-                                        <td>{classData.startTime}-{classData.endTime}</td>
-                                        <td>{classData.startDate}-{classData.endDate}</td>
-                                        <td>{classData.seatsAvailable}</td>
-                                        <td>{classData.Location}</td>
-                                    </tr>
-                                )
+                                return (<ClassList classData={classData} />)
                             })
-                        }
-                    </tbody>
-                </table>
-
+                        )
+                    })
+                }
             </div>
         );
 

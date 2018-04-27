@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import ClassesTeachingComponent from './classesTeachingComponent/classesTeachingComponent';
 import ClassesTakingComponent from './classesTakingComponent/classesTakingComponent';
+import ProfileInfo from './profileInfo/profileInfo';
 
 
 import {
@@ -34,30 +35,43 @@ class DashboardPage extends Component {
 
 
   render() {
-    const { firstName, email, classesTeaching, classesTaking } = this.props.currentUser.user.userData;
+    const { firstName, lastName, email, classesTeaching, classesTaking } = this.props.currentUser.user.userData;
 
     return (
       <div className="dashboardPage">
-        <p>name {firstName}</p>
-        <p>email {email}</p>
-        <p>teaching: </p>
-        <ClassesTeachingComponent aClassesTeaching={classesTeaching} />
-        <p>taking:</p>
-        <ClassesTakingComponent aClassesTaking={classesTaking} />
 
-
-        < button onClick={this.onSubmit.bind(this)} > create class</button>
         <Row>
           <Col s={12}>
             <Col s={3}>
               <div className="left-sidebar">
                 <h4>My Schedule</h4>
-                <img className="dropShadow" src={calImgSm} />
+                <img className="dropShadow" src={calImgSm} alt="" />
                 <Collection className="dropShadow" header="My Classes">
-                  <CollectionItem href="#" active>
-                    Classes Scheduled
-                  </CollectionItem>
-                  <CollectionItem href="#">Classes Taking</CollectionItem>
+                  <Modal
+                    header="Classes Teaching"
+                    bottomSheet
+                    className="classesTeachingModal"
+                    trigger={
+                      <CollectionItem href="#" data-target=".classesTeachingModal" active>
+                        Classes Teaching
+                       </CollectionItem>
+                    }
+                  >
+                    <ClassesTeachingComponent aClassesTeaching={classesTeaching} />
+                  </Modal>
+
+                  <Modal
+                    header="Classes Taking"
+                    bottomSheet
+                    className="classesTakingModal"
+                    trigger={
+                      <CollectionItem href="#" data-target=".classesTakingModal">
+                        Classes Taking
+                       </CollectionItem>
+                    }
+                  >
+                    <ClassesTakingComponent aClassesTaking={classesTaking} />
+                  </Modal>
                   <CollectionItem href="#">Following</CollectionItem>
                   <CollectionItem href="#">Previous Classes</CollectionItem>
                   <CollectionItem href="#">Students</CollectionItem>
@@ -120,7 +134,7 @@ class DashboardPage extends Component {
                     header="Add a class"
                     trigger={
                       <Button>
-                        <Icon left>add_box</Icon>Add a class
+                        <Icon left>add_box</Icon>Create a class
                       </Button>
                     }
                   >
@@ -129,17 +143,22 @@ class DashboardPage extends Component {
                 </li>
                 <li className="dashboard-top-button">
                   <Modal
-                    header="Profile"
+                    header="Profile Information"
                     trigger={
                       <Button>
                         <Icon left>account_box</Icon>Profile
                       </Button>
                     }
-                  />
+                  >
+                    Currently Logged in as:
+                  <p>name: {firstName} {lastName}</p>
+                    <p>email: {email}</p>
+                    {/* <ProfileInfo /> */}
+                  </Modal>
                 </li>
               </ul>
 
-              <img src={calImg} className="dropShadow" />
+              <img src={calImg} className="dropShadow" alt="" />
             </Col>
           </Col>
         </Row>

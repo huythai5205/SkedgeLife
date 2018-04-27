@@ -3,7 +3,8 @@
   padding: 32px 48px 0px 48px;
   border: 1px solid #EEE;
   display: inline-block;
-  background-color: lightgrey;
+  margin-top: 40px;
+  /* background-color: lightgrey; */
 }
 
 .error-message {

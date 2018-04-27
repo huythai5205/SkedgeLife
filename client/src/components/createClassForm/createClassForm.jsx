@@ -4,10 +4,9 @@ import PropTypes from "prop-types";
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { setCurrentUser } from '../../redux/actions/userActions';
-import { setSelectedClass } from '../../redux/actions/classActions';
 import { addFlashMessage } from '../../redux/actions/flashMessageActions';
 import jwt from 'jsonwebtoken';
-
+// import Autocomplete from 'react-google-autocomplete';
 
 class CreateClassForm extends Component {
   constructor(props) {
@@ -64,48 +63,55 @@ class CreateClassForm extends Component {
   }
 
   render() {
-    const { errors } = this.state;
     return (
       <div className="createClassForm">
+        {/* <Autocomplete
+          style={{ width: '90%' }}
+          onPlaceSelected={(place) => {
+            console.log(place);
+          }}
+          types={['(regions)']}
+          componentRestrictions={{ country: "ru" }}
+        /> */}
         <div className="row">
           <form className="col s12" onSubmit={this.onSubmit}>
             <div className="input-field col s6">
               <input id="name" type="text" onChange={this.change} required />
-              <label htmlFor="name">*Class Name:</label>
+              <label htmlFor="name">Class Name:</label>
             </div>
             <div className="input-field col s6">
               <input id="location" type="text" onChange={this.change} required />
-              <label htmlFor="location">*Location:</label>
+              <label htmlFor="location">Location:</label>
             </div>
             <div className="col s6">
-              <label>*Class Starts Time:</label>
+              <label>Class Start Time:</label>
               <div className="input-field inline">
                 <input id="startTime" type="time" onChange={this.change} required />
               </div>
             </div>
             <div className="col s6">
-              <label>*Class Ends Time:</label>
+              <label>Class End Time:</label>
               <div className="input-field inline">
                 <input id="endTime" type="time" onChange={this.change} required />
               </div>
             </div>
             <div className="col s6">
-              <label>*Class Starts Date:</label>
+              <label>Class Start Date:</label>
               <div className="input-field inline">
                 <input className="col s6" id="startDate" type="date" onChange={this.change} required />
               </div>
             </div>
             <div className="col s6">
-              <label>*Class Ends Date:</label>
+              <label>Class End Date:</label>
               <div className="input-field inline">
                 <input className="col s6" id="endDate" type="date" onChange={this.change} required />
               </div>
             </div>
             <div className="input-field col s6">
               <input id="seatsAvailable" type="number" onChange={this.change} required />
-              <label htmlFor="seatsAvailable">*Seats Available:</label>
+              <label htmlFor="seatsAvailable">Seats Available:</label>
             </div>
-            <button type='submit' name='btn_login' className='col s12 btn btn-large waves-effect indigo'> Create Class</button>
+            <button type='submit' name='btn_login' className='col s12 btn btn-large waves-effect teal'> Create Class</button>
           </form>
         </div>
       </div >

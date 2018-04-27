@@ -36,6 +36,8 @@ module.exports = function (app) {
           $push: {
             students: req.params.userId
           }
+        }, {
+          new: true
         })
         userData.password = decryptPassword(userData.password);
         jwt.sign({

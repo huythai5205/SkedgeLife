@@ -37,33 +37,17 @@
   font-family: "Black Han Sans", sans-serif;
 }
 
-.cursive-font {
-  font-family: "Lobster", cursive;
-}
-
 .greenBlue-gradient {
   background-color: #08aeea;
   background-image: linear-gradient(0deg, #08aeea 0%, #2af598 100%);
 }
 
-/* <<<<<<< HEAD
-.sectionTitle {
-  color: #5f04b4;
-  font-size: 40px;
-  font-family: "Lobster", cursive;
+.card-grey-text {
+  color: #585858;
 }
 
-.titleHr {
-  width: 97%;
-  background-color: #4c0be0;
-  background-image: linear-gradient(88deg, #4c0be0 0%, #ffbbec 100%);
-  height: 6px;
-  border-radius: 5px;
-  margin-bottom: 40px;
-=======
 .dropShadow {
-  -webkit-box-shadow: 2px 2px 6px 0px rgba(50, 50, 50, 0.63);
-  -moz-box-shadow: 2px 2px 6px 0px rgba(50, 50, 50, 0.63);
-  box-shadow: 2px 2px 6px 0px rgba(50, 50, 50, 0.63);
->>>>>>> dashboardSM
-} */
+  -webkit-box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.64);
+  -moz-box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.64);
+  box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.64);
+}
