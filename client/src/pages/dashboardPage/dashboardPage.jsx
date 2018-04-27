@@ -35,15 +35,11 @@ class DashboardPage extends Component {
 
 
   render() {
-    const { firstName, email, classesTeaching, classesTaking } = this.props.currentUser.user.userData;
+    const { firstName, lastName, email, classesTeaching, classesTaking } = this.props.currentUser.user.userData;
 
     return (
       <div className="dashboardPage">
 
-
-
-
-        {/* < button onClick={this.onSubmit.bind(this)} > create class</button> */}
         <Row>
           <Col s={12}>
             <Col s={3}>
@@ -52,16 +48,16 @@ class DashboardPage extends Component {
                 <img className="dropShadow" src={calImgSm} alt="" />
                 <Collection className="dropShadow" header="My Classes">
                   <Modal
-                    header="Classes Scheduled"
+                    header="Classes Teaching"
                     bottomSheet
-                    className="classesScheduledModal"
+                    className="classesTeachingModal"
                     trigger={
-                      <CollectionItem href="#" data-target=".classesScheduledModal" active>
-                        Classes Scheduled
+                      <CollectionItem href="#" data-target=".classesTeachingModal" active>
+                        Classes Teaching
                        </CollectionItem>
                     }
                   >
-                    <ClassesTakingComponent aClassesTaking={classesTaking} />
+                    <ClassesTeachingComponent aClassesTeaching={classesTeaching} />
                   </Modal>
 
                   <Modal
@@ -74,7 +70,7 @@ class DashboardPage extends Component {
                        </CollectionItem>
                     }
                   >
-                    <ClassesTakingComponent aClassesTeaching={classesTeaching} />
+                    <ClassesTakingComponent aClassesTaking={classesTaking} />
                   </Modal>
                   <CollectionItem href="#">Following</CollectionItem>
                   <CollectionItem href="#">Previous Classes</CollectionItem>
@@ -138,7 +134,7 @@ class DashboardPage extends Component {
                     header="Add a class"
                     trigger={
                       <Button>
-                        <Icon left>add_box</Icon>Add a class
+                        <Icon left>add_box</Icon>Create a class
                       </Button>
                     }
                   >
@@ -155,7 +151,7 @@ class DashboardPage extends Component {
                     }
                   >
                     Currently Logged in as:
-                  <p>name: {firstName}</p>
+                  <p>name: {firstName} {lastName}</p>
                     <p>email: {email}</p>
                     {/* <ProfileInfo /> */}
                   </Modal>

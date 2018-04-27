@@ -19,10 +19,10 @@ class Header extends Component {
 
     const userLinks = (<div>
       <Link to="/dashboardPage" className="header-link">
-        dashboard
+        Dashboard
         </Link>
-      <Link to="/profilePage" className="header-link">
-        profile
+      <Link to="/availableClassesPage" className="header-link">
+        Show Classes
         </Link>
       <a onClick={this.logout.bind(this)}>Logout</a>
     </div>

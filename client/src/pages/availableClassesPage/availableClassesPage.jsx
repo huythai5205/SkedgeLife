@@ -31,7 +31,6 @@ class AvailableClassesPage extends Component {
     }
 
     render() {
-        { console.log(this.state.classes) }
         return (
             <div className="availableClassesPage" >
 

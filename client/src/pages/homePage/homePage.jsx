@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./homePage.css";
+import SignUpUserForm from '../../components/signUpUserForm/signUpUserForm';
 
 import {
   Icon, Row, Col,

@@ -14,7 +14,7 @@ class ClassList extends Component {
     }
 
     render() {
-        const { name, location, startTime, endTime, startDate, endDate, seatsAvailable } = this.props.classData;
+        const { name, startTime, endTime, startDate, endDate, seatsAvailable } = this.props.classData;
         return (
             <div className="classList row" onClick={this.selectClass.bind(this)}>
                 <div className="col s3">{name}</div>
