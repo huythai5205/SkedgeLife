@@ -1,19 +1,23 @@
 # SkedgeLife
 
+###Demo
+https://secure-hollows-59143.herokuapp.com/
+
 ##Technologies Used:
 
 ###Front-end:
 * ReactJs
+* Redux
 * materializeCSS
 
 ###Back-end:
-* NodsJs
+* NodeJs
 * ExpressJs
-* mongo
+* mongoDB 
 * mongoose
 
 
-###Intallation:
+###Installation:
 
 run 'npm install'
 
