@@ -38,7 +38,7 @@ export default class ClassesTeachingComponent extends Component {
                                 <tr>
                                     <td>{classData.name}</td>
                                     <td>{classData.location}</td>
-                                    <td>{moment(classData.startTime).format('h:mm a')} - {moment(classData.endTime).format('h:mm a')}</td>
+                                    <td>{classData.startTime} - {classData.endTime}</td>
                                     <td>{moment(classData.startDate).format('MMMM Do YYYY')} - {moment(classData.endDate).format('MMMM Do YYYY')}</td>
                                     <td>{classData.seatsAvailable}</td>
                                 </tr>

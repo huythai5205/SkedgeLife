@@ -67,6 +67,7 @@ class CreateClassForm extends Component {
   render() {
     return (
       <div className="createClassForm">
+
         {/* <Autocomplete
           style={{ width: '90%' }}
           onPlaceSelected={(place) => {
@@ -75,6 +76,7 @@ class CreateClassForm extends Component {
           types={['(regions)']}
           componentRestrictions={{ country: "ru" }}
         /> */}
+
         <div className="row">
           <form className="col s12" onSubmit={this.onSubmit}>
             <div className="input-field col s6">
