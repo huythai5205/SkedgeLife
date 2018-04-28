@@ -11,6 +11,8 @@ import moment from 'moment';
 
 class ClassInfoPage extends Component {
 
+
+
     addClass = event => {
         event.preventDefault();
         if (this.props.currentUser.user.userData._id && this.props.selectedClass.selected_class._id) {
@@ -32,18 +34,22 @@ class ClassInfoPage extends Component {
 
     render() {
         //TODO: need to check if user already taking or teaching the class, try array1.includes('value')
+        console.log(this.props.currentUser.user.userData.classesTeaching, this.props.selectedClass.selected_class._id);
+        let isEnroll = this.props.currentUser.user.userData.classesTeaching.includes(this.props.selectedClass.selected_class._id) || this.props.currentUser.user.userData.classesTaking.includes(this.props.selectedClass.selected_class._id);
+
         const { name, location, startTime, endTime, startDate, endDate, instructor, students } = this.props.selectedClass.selected_class;
 
+        const button = isEnroll ? ('') : (<button onClick={this.addClass.bind(this)}>Add Class</button>);
         return (
 
             <div className="class-info">
                 <h3>class name:  {name}</h3>
                 <h4>location:  {location}</h4>
-                <h4>Time:  {moment(startTime).format('h:mm a')} - {moment(endTime).format('h:mm a')}</h4>
+                <h4>Time:  {startTime} - {endTime}</h4>
                 <h4>Date:  {moment(startDate).format('MMMM Do YYYY')} - {moment(endDate).format('MMMM Do YYYY')}</h4>
                 <h4>instructor: {instructor}</h4>
                 <p>students: {students}</p>
-                <button onClick={this.addClass.bind(this)}>Add Class</button>
+                {button}
             </div>
         );
     }
