@@ -5,8 +5,8 @@ import { Row, Col, MediaBox } from "react-materialize";
 
 //images
 
-import Gal1 from "/Users/imac/Documents/Sites/SkedgeLife/client/src/components/userProfileComponents/imageGallery/imagesDenae/galleryBob.png";
-import Gal2 from "/Users/imac/Documents/Sites/SkedgeLife/client/src/components/userProfileComponents/imageGallery/imagesDenae/gallerySunBurst.png";
+import Gal1 from "./imagesDenae/galleryBob.png";
+import Gal2 from "./imagesDenae/gallerySunBurst.png";
 import Gal3 from "./imagesDenae/galleryTreeGirl.png";
 import Gal4 from "./imagesDenae/galleryTurtle.png";
 import Gal5 from "./imagesDenae/galleryLotus.png";
