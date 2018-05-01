@@ -8,6 +8,7 @@ import { addFlashMessage } from '../../redux/actions/flashMessageActions';
 import jwt from 'jsonwebtoken';
 // import Autocomplete from 'react-google-autocomplete';
 
+
 class CreateClassForm extends Component {
   constructor(props) {
     super(props);
@@ -46,8 +47,9 @@ class CreateClassForm extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    axios.post('/api/class/' + this.props.currentUser.user.userData._id, this.state).then(user => {
-      const userToken = user.data;
+    axios.post('/api/class/' + this.props.currentUser.user.userData._id, this.state).then(userData => {
+      const userToken = userData.data;
+      localStorage.setItem('userToken', userToken);
       const currentUser = jwt.decode(userToken);
       this.props.setCurrentUser(currentUser);
       this.props.addFlashMessage({
@@ -65,6 +67,7 @@ class CreateClassForm extends Component {
   render() {
     return (
       <div className="createClassForm">
+
         {/* <Autocomplete
           style={{ width: '90%' }}
           onPlaceSelected={(place) => {
@@ -73,6 +76,7 @@ class CreateClassForm extends Component {
           types={['(regions)']}
           componentRestrictions={{ country: "ru" }}
         /> */}
+
         <div className="row">
           <form className="col s12" onSubmit={this.onSubmit}>
             <div className="input-field col s6">

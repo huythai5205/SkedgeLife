@@ -18,7 +18,7 @@ class ClassList extends Component {
         return (
             <div className="classList row" onClick={this.selectClass.bind(this)}>
                 <div className="col s3">{name}</div>
-                <div className="col s3">{moment(startTime).format('h:mm a')} - {moment(endTime).format('h:mm a')}</div>
+                <div className="col s3">{startTime} - {endTime}</div>
                 <div className="col s3"> {moment(startDate).format('MMMM Do YYYY')} - {moment(endDate).format('MMMM Do YYYY')}</div>
                 <div className="col s3">{seatsAvailable}</div>
             </div>

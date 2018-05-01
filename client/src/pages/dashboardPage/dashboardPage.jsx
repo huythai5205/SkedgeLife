@@ -28,7 +28,7 @@ import calImgSm from "./images/googleCalMonth.png";
 
 class DashboardPage extends Component {
 
-  onSubmit = event => {
+  createClass = event => {
     event.preventDefault();
     this.context.router.history.push('/createClass');
   }
@@ -37,6 +37,7 @@ class DashboardPage extends Component {
   render() {
     const { firstName, lastName, email, classesTeaching, classesTaking } = this.props.currentUser.user.userData;
 
+    console.log(this.props.currentUser.user.userData);
     return (
       <div className="dashboardPage">
 
@@ -130,16 +131,9 @@ class DashboardPage extends Component {
                 <li className="calendar-sort">Monthly</li>
                 <li className="calendar-sort">Yearly</li>
                 <li className="dashboard-top-button">
-                  <Modal
-                    header="Add a class"
-                    trigger={
-                      <Button>
-                        <Icon left>add_box</Icon>Create a class
+                  <Button onClick={this.createClass.bind(this)}>
+                    <Icon left>add_box</Icon>Create a class
                       </Button>
-                    }
-                  >
-                    <CreateClassForm />
-                  </Modal>
                 </li>
                 <li className="dashboard-top-button">
                   <Modal

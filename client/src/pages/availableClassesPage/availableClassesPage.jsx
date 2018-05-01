@@ -43,12 +43,7 @@ class AvailableClassesPage extends Component {
 
                 {
                     this.state.classes.map(classData => {
-                        return (
-
-                            this.state.classes.map(classData => {
-                                return (<ClassList classData={classData} />)
-                            })
-                        )
+                        return (<ClassList classData={classData} />)
                     })
                 }
             </div>
