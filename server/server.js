@@ -9,14 +9,14 @@ const webpackConfig = require("../webpack.config");
 const app = express();
 
 const PORT = process.env.PORT || 3001;
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/skedgeLife";
+// const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/skedgeLife";
 
 
-// const herokuUser = 'heroku_ndv2kn47';
-// const MONGODB_URI = process.env.MONGODB_URI || "mongodb://" + herokuUser + ":@ds161459.mlab.com:61459/heroku_ndv2kn47";
-// if (process.env.MONGODB_URI) {
-//   mongoose.connect(MONGODB_URI);
-// }
+const herokuUser = 'heroku_ndv2kn47';
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://" + herokuUser + ":@ds161459.mlab.com:61459/heroku_ndv2kn47";
+if (process.env.MONGODB_URI) {
+  mongoose.connect(MONGODB_URI);
+}
 
 // const compiler = webpack(webpackConfig);
 
@@ -38,9 +38,9 @@ app.use(bodyParser.json());
 
 
 app.get("/", (req, res) => {
-
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
+
 // Connect to the Mongo DB
 mongoose.connect(MONGODB_URI, err => {
   if (err) {

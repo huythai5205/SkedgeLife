@@ -1,5 +1,8 @@
 # SkedgeLife
 
+Let individual can easily create and schedule classes or sign up for classes such as yoga, coding, messages...etc.
+
+
 ###Demo
 https://secure-hollows-59143.herokuapp.com/
 
