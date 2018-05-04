@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "server": "node server/server.js",
+    "server": "node ./server/server.js",
     "client": "node server/scripts/start-client.js",
     "start": "node ./server/server.js",
     "start:dev": "concurrently \"nodemon --watch server --exec babel-node server/server.js\" \"npm run client\"",
