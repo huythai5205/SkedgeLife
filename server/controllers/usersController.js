@@ -28,7 +28,7 @@ module.exports = function (app) {
         userData.password = decryptPassword(userData.password);
         jwt.sign({
           userData
-        }, config.default.jwtSecret, (err, token) => {
+        }, config.jwtSecret, (err, token) => {
           res.json(token);
         });
       }).catch(err => res.status(422).json({
@@ -55,7 +55,7 @@ module.exports = function (app) {
           if (decryptPassword(userData.password) === req.body.password) {
             jwt.sign({
               userData
-            }, config.default.jwtSecret, (err, token) => {
+            }, config.jwtSecret, (err, token) => {
               res.json(token);
             });
           } else {

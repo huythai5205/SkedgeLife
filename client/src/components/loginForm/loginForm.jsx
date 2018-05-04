@@ -35,6 +35,7 @@ class LoginForm extends Component {
             setAuthorization(userToken);
             localStorage.setItem('userToken', userToken);
             const currentUser = jwt.decode(userToken);
+            console.log(userData);
             this.props.setCurrentUser(currentUser);
             this.props.addFlashMessage({
                 type: 'success',
