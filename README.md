@@ -4,7 +4,7 @@ Let individual can easily create and schedule classes or sign up for classes suc
 
 
 ###Demo
-https://secure-hollows-59143.herokuapp.com/
+https://git.heroku.com/calm-waters-72414.git
 
 ##Technologies Used:
 
