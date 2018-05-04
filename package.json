@@ -6,7 +6,7 @@
   "scripts": {
     "server": "node server/server.js",
     "client": "node server/scripts/start-client.js",
-    "start": "node server/scripts/start-client.js",
+    "start": "node ./server/server.js",
     "start:dev": "concurrently \"nodemon --watch server --exec babel-node server/server.js\" \"npm run client\"",
     "build": "node scripts/build.js",
     "seed": "node scripts/seedDB.js",
@@ -34,6 +34,7 @@
   "homepage": "https://github.com/kennyt85/SkedgeLife#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
     "express": "^4.16.3",
     "googleapis": "^27.0.0",
     "jsonwebtoken": "^8.2.1",

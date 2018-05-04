@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-
+const path = require("path");
 const webpack = require("webpack");
 const webpackMiddleware = require("webpack-dev-middleware");
 const webpackHotMiddleware = require("webpack-hot-middleware");
@@ -10,10 +10,11 @@ const app = express();
 
 const PORT = process.env.PORT || 3001;
 // const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/skedgeLife";
+const cors = require("cors");
 
 
 const herokuUser = 'heroku_ndv2kn47';
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://" + herokuUser + ":@ds161459.mlab.com:61459/heroku_ndv2kn47";
+const MONGODB_URI = "mongodb://huythai:h12345@ds115340.mlab.com:15340/heroku_45s1lqzs";
 if (process.env.MONGODB_URI) {
   mongoose.connect(MONGODB_URI);
 }
@@ -46,8 +47,8 @@ mongoose.connect(MONGODB_URI, err => {
   if (err) {
     console.log(err);
   } else {
-    require('./controllers/usersController.js')(app);
-    require('./controllers/classesController.js')(app);
+    require('./controllers/usersController.js')(app.use(cors()));
+    require('./controllers/classesController.js')(app.use(cors()));
 
     app.listen(PORT, err => {
       err ? console.log(err) : console.log("App running on port " + PORT + "!")
