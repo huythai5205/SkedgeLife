@@ -1,6 +1,6 @@
 # SkedgeLife
 
-Let individuals can easily create and schedule classes or sign up for classes such as yoga, coding, messages...etc.
+Let individuals can easily create and schedule classes or sign up for classes such as yoga, coding, massages...etc.
 
 
 ###Demo
